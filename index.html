@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAKHI WOMEN'S WEAR — Timeless Indian Elegance, Borivali East</title>
+<meta name="description" content="Premium women's ethnic & fusion wear. Sarees, Lehengas, Kurtis, Bridal & more. Women-owned boutique in Borivali East, Mumbai. Trusted for 12+ years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =============================================
+   SAKHI WOMEN'S WEAR — Brand & Color Variables
+   Change these to update the whole site palette
+   ============================================= */
+:root {
+  --bg-deep:        #0c0a0b;
+  --bg-card:        #1a1518;
+  --bg-warm:        #f5ede4;
+  --bg-surface:     #221c1f;
+
+  --gold:           #c9a96e;
+  --gold-light:     #e8cfa0;
+  --rose-gold:      #b57a72;
+  --wine:           #6b2d3e;
+  --wine-light:     #8a3a4f;
+  --sakhi-magenta:  #7d1f5e;
+  --blush:          #e8c4bb;
+
+  --text-primary:   #f0e6db;
+  --text-muted:     #9a8880;
+  --text-dark:      #1a1518;
+
+  --border-gold:    rgba(201,169,110,0.25);
+  --border-subtle:  rgba(240,230,219,0.08);
+
+  --font-serif:     'Cormorant Garamond', Georgia, serif;
+  --font-sans:      'Jost', sans-serif;
+
+  --transition-slow: 0.7s cubic-bezier(0.16,1,0.3,1);
+  --transition-med:  0.4s cubic-bezier(0.16,1,0.3,1);
+  --transition-fast: 0.2s ease;
+}
+
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+body.loading { overflow: hidden; }
+
+/* ============ CUSTOM CURSOR ============ */
+#cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, background 0.3s, width 0.3s, height 0.3s;
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,169,110,0.5);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s, width 0.3s, height 0.3s, opacity 0.3s;
+}
+.cursor-hover #cursor-dot { width: 14px; height: 14px; background: var(--rose-gold); }
+.cursor-hover #cursor-ring { width: 54px; height: 54px; opacity: 0.6; }
+
+/* ============ LOADER ============ */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--bg-deep);
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 24px;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+#loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 4rem);
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 300;
+  opacity: 0;
+  animation: loaderFadeIn 0.8s 0.3s forwards;
+}
+.loader-bar-wrap {
+  width: 200px; height: 1px;
+  background: rgba(201,169,110,0.2);
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--wine), var(--gold));
+  animation: loaderProgress 1.8s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes loaderFadeIn { to { opacity: 1; } }
+@keyframes loaderProgress { to { width: 100%; } }
+
+/* ============ SPOTLIGHT EFFECT ============ */
+#spotlight {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(circle 250px at 50% 50%, rgba(201,169,110,0.04) 0%, transparent 70%);
+  transition: background 0.05s;
+}
+
+/* ============ SCROLL PROGRESS ============ */
+#scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--wine), var(--gold), var(--rose-gold));
+  z-index: 200;
+  transition: width 0.1s;
+}
+
+/* ============ NAVIGATION ============ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 48px;
+  transition: padding var(--transition-med), background var(--transition-med);
+}
+#nav.scrolled {
+  background: rgba(12,10,11,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 14px 48px;
+  border-bottom: 1px solid var(--border-gold);
+}
+.nav-logo {
+  display: flex; flex-direction: column;
+  text-decoration: none;
+}
+.nav-logo-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  color: var(--text-primary);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.nav-logo-sub {
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-weight: 400;
+}
+.nav-links {
+  display: flex; gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width var(--transition-med);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-size: 0.65rem; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  background: var(--gold);
+  border: none; padding: 10px 22px;
+  cursor: none;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: none;
+  background: none; border: none; padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 24px; height: 1px;
+  background: var(--text-primary);
+  transition: var(--transition-med);
+}
+#mobile-menu {
+  display: none; position: fixed; inset: 0;
+  background: rgba(12,10,11,0.98);
+  z-index: 99;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 36px;
+}
+#mobile-menu.open { display: flex; }
+#mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 2rem; font-weight: 300;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color var(--transition-fast);
+}
+#mobile-menu a:hover { color: var(--gold); }
+.menu-close {
+  position: absolute; top: 28px; right: 48px;
+  font-size: 1.5rem; color: var(--text-muted);
+  background: none; border: none; cursor: none;
+  font-family: var(--font-serif);
+}
+
+/* ============ HERO ============ */
+#hero {
+  position: relative;
+  height: 100vh; min-height: 700px;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+#hero-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(107,45,62,0.3) 0%,
+    rgba(12,10,11,0.6) 40%,
+    rgba(12,10,11,0.85) 100%
+  );
+  z-index: 1;
+}
+/* Replace the hero-image div background with your hero photo */
+.hero-image-placeholder {
+  position: absolute; inset: 0;
+  /* REPLACE THIS: background-image: url('your-hero-model-photo.jpg'); */
+  background: radial-gradient(ellipse at 70% 50%,
+    rgba(125,31,94,0.35) 0%,
+    rgba(107,45,62,0.2) 30%,
+    transparent 70%);
+  background-size: cover; background-position: center;
+  z-index: 0;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 clamp(24px, 6vw, 96px);
+  max-width: 780px;
+}
+.hero-label {
+  font-size: 0.62rem; letter-spacing: 0.35em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 24px; font-weight: 400;
+  opacity: 0; transform: translateY(20px);
+  animation: heroReveal 0.8s 1.8s forwards;
+}
+.hero-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 300; line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  opacity: 0; transform: translateY(30px);
+  animation: heroReveal 1s 2s forwards;
+}
+.hero-heading em { font-style: italic; color: var(--gold-light); }
+.hero-subtext {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: var(--text-muted); line-height: 1.8;
+  max-width: 440px; margin-bottom: 44px;
+  opacity: 0; transform: translateY(20px);
+  animation: heroReveal 0.8s 2.2s forwards;
+}
+.hero-ctas {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; transform: translateY(20px);
+  animation: heroReveal 0.8s 2.4s forwards;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; font-weight: 500;
+  padding: 16px 36px;
+  background: var(--gold);
+  color: var(--bg-deep);
+  text-decoration: none; border: none;
+  cursor: none; position: relative; overflow: hidden;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--wine);
+  transform: translateX(-101%);
+  transition: transform var(--transition-med);
+}
+.btn-primary:hover { color: var(--text-primary); }
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary span { position: relative; z-index: 1; }
+.btn-outline {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; font-weight: 400;
+  padding: 15px 36px;
+  border: 1px solid rgba(201,169,110,0.5);
+  color: var(--gold); text-decoration: none;
+  cursor: none; transition: var(--transition-med);
+  position: relative; overflow: hidden;
+  background: transparent;
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.08);
+}
+.hero-scroll-cue {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  z-index: 2; opacity: 0;
+  animation: heroReveal 0.8s 3s forwards;
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s 3.5s infinite;
+}
+.scroll-label {
+  font-size: 0.55rem; letter-spacing: 0.25em;
+  color: var(--text-muted); text-transform: uppercase;
+  writing-mode: horizontal-tb;
+}
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.5; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* Floating fabric shapes in hero */
+.fabric-shape {
+  position: absolute; border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  opacity: 0.06; z-index: 1;
+  animation: fabricFloat var(--dur, 12s) ease-in-out infinite alternate;
+}
+.fabric-shape:nth-child(1) { width: 600px; height: 600px; right: -150px; top: -100px; background: radial-gradient(var(--wine), transparent); --dur:14s; }
+.fabric-shape:nth-child(2) { width: 400px; height: 400px; right: 100px; bottom: -50px; background: radial-gradient(var(--gold), transparent); --dur:10s; }
+.fabric-shape:nth-child(3) { width: 300px; height: 500px; left: 40%; top: 0; background: radial-gradient(var(--sakhi-magenta), transparent); --dur:16s; }
+@keyframes fabricFloat {
+  0% { transform: translate(0,0) rotate(0deg) scale(1); }
+  100% { transform: translate(20px, 30px) rotate(8deg) scale(1.05); }
+}
+
+/* ============ SECTION COMMON ============ */
+section { position: relative; overflow: hidden; }
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 80px);
+}
+.section-label {
+  font-size: 0.6rem; letter-spacing: 0.35em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 16px; font-weight: 400;
+  display: block;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300; line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+.section-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin: 24px 0 40px;
+}
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ============ ORNAMENTAL DIVIDER SVG ============ */
+.ornament-divider {
+  text-align: center; padding: 16px 0; opacity: 0.35;
+}
+.ornament-divider svg { width: 280px; max-width: 80%; }
+
+/* ============ MOOD TOGGLE ============ */
+#collections {
+  padding: 120px 0 80px;
+  background: var(--bg-deep);
+}
+.mood-toggle-wrap {
+  display: flex; align-items: center; gap: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  width: fit-content;
+  margin-bottom: 56px; overflow: hidden;
+}
+.mood-btn {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 12px 28px;
+  border: none; cursor: none;
+  font-family: var(--font-sans); font-weight: 400;
+  transition: background var(--transition-med), color var(--transition-med);
+  background: transparent; color: var(--text-muted);
+}
+.mood-btn.active {
+  background: var(--gold); color: var(--bg-deep);
+}
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  transition: opacity 0.4s;
+}
+.collections-grid.fading { opacity: 0; }
+
+/* COLLECTION CARD */
+.collection-card {
+  position: relative; overflow: hidden;
+  cursor: none; aspect-ratio: 3/4;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+.collection-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.2);
+}
+/* REPLACE THIS BLOCK: Add background-image: url('your-collection-photo.jpg') to each .card-img */
+.card-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+.collection-card:hover .card-img {
+  transform: scale(1.06);
+  filter: brightness(0.8) contrast(1.05);
+}
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12,10,11,0.9) 0%, rgba(12,10,11,0.2) 50%, transparent 100%);
+  z-index: 1;
+}
+.card-content {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  padding: 28px 24px;
+  transform: translateY(4px);
+  transition: transform var(--transition-med);
+}
+.collection-card:hover .card-content { transform: translateY(0); }
+.card-tag {
+  font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 8px; display: block;
+}
+.card-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem; font-weight: 300;
+  color: var(--text-primary); line-height: 1.2;
+}
+.card-sub {
+  font-size: 0.72rem; color: var(--text-muted);
+  margin-top: 6px; line-height: 1.5;
+  max-height: 0; overflow: hidden;
+  transition: max-height var(--transition-med), opacity var(--transition-med);
+  opacity: 0;
+}
+.collection-card:hover .card-sub { max-height: 60px; opacity: 1; }
+.card-explore {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-top: 14px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity var(--transition-med), transform var(--transition-med);
+  cursor: none; background: none; border: none;
+  font-family: var(--font-sans); font-weight: 400;
+}
+.collection-card:hover .card-explore { opacity: 1; transform: translateY(0); }
+.card-explore svg { transition: transform var(--transition-fast); }
+.card-explore:hover svg { transform: translateX(4px); }
+
+/* Placeholder gradients for collection images (replace with real photos) */
+.card-img.sarees      { background: linear-gradient(135deg, #3d1a2e 0%, #7d3a5a 40%, #2a1020 100%); }
+.card-img.lehengas    { background: linear-gradient(135deg, #1a2a3d 0%, #2d4a6b 40%, #0f1a28 100%); }
+.card-img.kurtis      { background: linear-gradient(135deg, #2a3d1a 0%, #4a6b2d 40%, #1a2810 100%); }
+.card-img.bridal      { background: linear-gradient(135deg, #3d2a1a 0%, #7d5a2d 40%, #280f0f 100%); }
+.card-img.everyday    { background: linear-gradient(135deg, #1a2a2a 0%, #2d5a5a 40%, #0f2020 100%); }
+
+/* ============ EXPERIENCE SECTION ============ */
+#experience {
+  padding: 120px 0;
+  background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(107,45,62,0.08) 50%, var(--bg-deep) 100%);
+}
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.experience-visual {
+  position: relative; aspect-ratio: 4/5;
+  overflow: hidden;
+}
+/* Replace with actual in-store photo */
+.experience-img {
+  width: 100%; height: 100%;
+  /* background-image: url('your-store-photo.jpg'); */
+  background: linear-gradient(135deg, rgba(107,45,62,0.6) 0%, rgba(201,169,110,0.15) 50%, rgba(12,10,11,0.9) 100%);
+  background-size: cover; background-position: center;
+  display: flex; align-items: center; justify-content: center;
+}
+.experience-monogram {
+  font-family: var(--font-serif);
+  font-size: 8rem; font-weight: 300;
+  color: rgba(201,169,110,0.15); letter-spacing: -0.05em;
+  font-style: italic; user-select: none;
+}
+.experience-corner {
+  position: absolute; inset: 16px;
+  border: 1px solid rgba(201,169,110,0.15);
+  pointer-events: none;
+}
+.experience-corner::before, .experience-corner::after {
+  content: ''; position: absolute;
+  width: 24px; height: 24px;
+  border-color: var(--gold); border-style: solid;
+}
+.experience-corner::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.experience-corner::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.ar-badge {
+  position: absolute; bottom: 24px; right: 24px;
+  background: rgba(12,10,11,0.85);
+  border: 1px solid var(--border-gold);
+  padding: 12px 18px;
+  backdrop-filter: blur(10px);
+}
+.ar-badge-label {
+  font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold);
+  text-transform: uppercase; display: block; margin-bottom: 2px;
+}
+.ar-badge-text {
+  font-family: var(--font-serif); font-size: 1rem;
+  color: var(--text-primary); font-style: italic;
+}
+.experience-text { padding: 0 0 0 20px; }
+.experience-features { margin-top: 40px; display: flex; flex-direction: column; gap: 28px; }
+.exp-feature { display: flex; gap: 18px; align-items: flex-start; }
+.exp-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1rem;
+}
+.exp-feature h4 {
+  font-family: var(--font-serif); font-size: 1.1rem;
+  font-weight: 400; color: var(--text-primary); margin-bottom: 4px;
+}
+.exp-feature p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ============ FABRIC LIGHT PLAY ============ */
+#fabric-lab {
+  padding: 100px 0;
+  background: var(--bg-deep);
+  text-align: center;
+}
+#fabric-canvas-wrap {
+  width: 100%; max-width: 900px;
+  aspect-ratio: 16/7;
+  margin: 48px auto 0;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  border: 1px solid var(--border-gold);
+}
+#fabric-canvas { width: 100%; height: 100%; display: block; }
+.fabric-lab-hint {
+  font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted);
+  text-transform: uppercase; margin-top: 16px;
+}
+
+/* ============ BESTSELLERS CAROUSEL ============ */
+#bestsellers {
+  padding: 100px 0 80px;
+  background: var(--bg-deep);
+}
+.carousel-track-wrap {
+  overflow: hidden; margin-top: 48px;
+  cursor: none;
+}
+.carousel-track {
+  display: flex; gap: 20px;
+  width: max-content;
+  will-change: transform;
+  user-select: none;
+}
+.bs-card {
+  flex: 0 0 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden; position: relative;
+  transition: border-color var(--transition-med);
+}
+.bs-card:hover { border-color: rgba(201,169,110,0.3); }
+/* Replace background gradients with your product images */
+.bs-card-img {
+  aspect-ratio: 3/4;
+  background-size: cover; background-position: center;
+  transition: transform var(--transition-slow);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 0.9rem;
+  color: rgba(201,169,110,0.4); letter-spacing: 0.1em;
+  text-transform: uppercase; font-style: italic;
+}
+.bs-card:hover .bs-card-img { transform: scale(1.04); }
+/* Each card gets a unique gradient as image placeholder */
+.bs-card:nth-child(1) .bs-card-img { background: linear-gradient(160deg,#3a1a2d,#6b2d3e); }
+.bs-card:nth-child(2) .bs-card-img { background: linear-gradient(160deg,#2d1a3a,#3a2d6b); }
+.bs-card:nth-child(3) .bs-card-img { background: linear-gradient(160deg,#1a2d1a,#2d5a3a); }
+.bs-card:nth-child(4) .bs-card-img { background: linear-gradient(160deg,#2d2a1a,#6b5a2d); }
+.bs-card:nth-child(5) .bs-card-img { background: linear-gradient(160deg,#2d1a1a,#5a2d2d); }
+.bs-card:nth-child(6) .bs-card-img { background: linear-gradient(160deg,#1a2d2d,#2d5a5a); }
+.bs-card-info { padding: 18px 18px 22px; }
+.bs-badge {
+  font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--bg-deep); background: var(--gold);
+  padding: 3px 8px; display: inline-block; margin-bottom: 10px;
+}
+.bs-card-name {
+  font-family: var(--font-serif); font-size: 1.1rem;
+  font-weight: 400; color: var(--text-primary); margin-bottom: 4px;
+}
+.bs-price {
+  font-size: 0.78rem; color: var(--gold); letter-spacing: 0.05em;
+}
+.bs-wishlist {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px;
+  background: rgba(12,10,11,0.7);
+  border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  cursor: none; transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.bs-wishlist:hover { background: rgba(181,122,114,0.2); border-color: var(--rose-gold); }
+.wishlist-heart { font-size: 0.85rem; color: var(--text-muted); transition: color var(--transition-fast); }
+.bs-wishlist:hover .wishlist-heart { color: var(--rose-gold); }
+.heart-float {
+  position: fixed; pointer-events: none; z-index: 1000;
+  font-size: 1.2rem; color: var(--rose-gold);
+  animation: floatHeart 0.9s ease-out forwards;
+}
+@keyframes floatHeart {
+  0% { opacity: 1; transform: translate(-50%,-50%) scale(0.5); }
+  50% { opacity: 1; transform: translate(-50%, -80px) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -130px) scale(0.8); }
+}
+.carousel-controls {
+  display: flex; gap: 12px; margin-top: 32px;
+}
+.carousel-btn {
+  width: 46px; height: 46px;
+  border: 1px solid var(--border-gold);
+  background: none; cursor: none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); transition: background var(--transition-fast);
+  font-size: 1rem;
+}
+.carousel-btn:hover { background: rgba(201,169,110,0.1); }
+
+/* ============ STORY / ABOUT ============ */
+#story {
+  padding: 140px 0;
+  background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(34,28,31,0.8) 100%);
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px; align-items: center;
+}
+.story-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 48px;
+}
+.stat-box {
+  background: var(--bg-surface);
+  padding: 28px 24px;
+  border: 1px solid var(--border-subtle);
+}
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300; color: var(--gold); line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem; letter-spacing: 0.15em;
+  color: var(--text-muted); text-transform: uppercase;
+  margin-top: 6px;
+}
+/* Replace with an actual brand/story photo */
+.story-visual {
+  position: relative;
+}
+.story-img {
+  width: 100%; aspect-ratio: 3/4;
+  /* background-image: url('your-story-photo.jpg'); */
+  background: linear-gradient(160deg, rgba(125,31,94,0.5) 0%, rgba(107,45,62,0.3) 50%, rgba(12,10,11,0.95) 100%);
+  background-size: cover; background-position: center;
+  display: flex; align-items: center; justify-content: center;
+}
+.story-img-inner-text {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300; font-style: italic;
+  color: rgba(201,169,110,0.2); text-align: center;
+  line-height: 1.2;
+}
+.story-tag {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--wine);
+  padding: 20px 24px;
+  max-width: 200px;
+  border: 1px solid rgba(201,169,110,0.2);
+}
+.story-tag-text {
+  font-family: var(--font-serif);
+  font-size: 0.95rem; font-weight: 300;
+  color: var(--text-primary); font-style: italic;
+  line-height: 1.5;
+}
+.story-tag-sub {
+  font-size: 0.58rem; letter-spacing: 0.15em;
+  color: var(--gold); text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ============ TESTIMONIALS ============ */
+#testimonials {
+  padding: 120px 0;
+  background: linear-gradient(180deg, rgba(34,28,31,0.5) 0%, var(--bg-deep) 100%);
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px; margin-top: 56px;
+}
+.testi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 36px 32px;
+  position: relative; overflow: hidden;
+  transition: border-color var(--transition-med), transform var(--transition-med);
+}
+.testi-card:hover { border-color: rgba(201,169,110,0.3); transform: translateY(-4px); }
+.testi-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 5rem; line-height: 0.8;
+  color: rgba(201,169,110,0.12);
+  position: absolute; top: 24px; left: 24px;
+  font-style: italic;
+}
+.testi-text {
+  font-family: var(--font-serif); font-size: 1.05rem;
+  font-style: italic; line-height: 1.75;
+  color: var(--text-primary); position: relative; z-index: 1;
+  margin-bottom: 24px;
+}
+.testi-stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 14px; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--wine), var(--rose-gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 1rem;
+  color: var(--text-primary); flex-shrink: 0;
+}
+.testi-name {
+  font-size: 0.82rem; font-weight: 500; color: var(--text-primary);
+}
+.testi-location {
+  font-size: 0.65rem; letter-spacing: 0.1em;
+  color: var(--gold); text-transform: uppercase; margin-top: 1px;
+}
+
+/* ============ VISIT STORE ============ */
+#visit {
+  padding: 120px 0;
+  background: var(--bg-deep);
+}
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px; align-items: start;
+}
+.visit-info { display: flex; flex-direction: column; gap: 36px; }
+.visit-detail { display: flex; gap: 20px; }
+.visit-detail-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1.1rem; margin-top: 2px;
+}
+.visit-detail h4 {
+  font-size: 0.62rem; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 6px;
+}
+.visit-detail p, .visit-detail a {
+  font-size: 0.88rem; color: var(--text-primary);
+  text-decoration: none; line-height: 1.7;
+  transition: color var(--transition-fast);
+}
+.visit-detail a:hover { color: var(--gold); }
+.whatsapp-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: #fff;
+  padding: 14px 28px;
+  font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-family: var(--font-sans);
+  font-weight: 500; text-decoration: none; cursor: none;
+  transition: background var(--transition-fast);
+  border: none; margin-top: 8px;
+}
+.whatsapp-btn:hover { background: #128C7E; }
+.map-placeholder {
+  aspect-ratio: 4/3;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px; padding: 24px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.map-pin-pulse {
+  width: 20px; height: 20px;
+  background: var(--wine); border-radius: 50%;
+  position: relative;
+}
+.map-pin-pulse::before {
+  content: ''; position: absolute; inset: -8px;
+  border: 2px solid var(--wine);
+  border-radius: 50%; opacity: 0.5;
+  animation: pulsePing 2s ease-out infinite;
+}
+@keyframes pulsePing {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.map-address-text {
+  font-size: 0.78rem; line-height: 1.7; color: var(--text-muted); text-align: center;
+}
+.map-link {
+  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--border-gold);
+  padding-bottom: 2px; transition: border-color var(--transition-fast);
+}
+.map-link:hover { border-color: var(--gold); }
+
+/* ============ NEWSLETTER / COMMUNITY ============ */
+#community {
+  padding: 120px 0;
+  background: linear-gradient(135deg, rgba(107,45,62,0.15) 0%, rgba(12,10,11,0.8) 50%, rgba(125,31,94,0.1) 100%);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+}
+.community-inner {
+  text-align: center; max-width: 640px; margin: 0 auto;
+}
+.community-inner .section-divider { margin: 24px auto 40px; }
+.community-form {
+  display: flex; gap: 0; max-width: 480px; margin: 32px auto 0;
+}
+.community-input {
+  flex: 1;
+  background: rgba(240,230,219,0.06);
+  border: 1px solid var(--border-gold);
+  border-right: none;
+  padding: 14px 20px;
+  font-family: var(--font-sans); font-size: 0.82rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: background var(--transition-fast);
+}
+.community-input::placeholder { color: var(--text-muted); }
+.community-input:focus { background: rgba(240,230,219,0.1); }
+.community-form .btn-primary { white-space: nowrap; }
+.community-whatsapp {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent;
+  border: 1px solid var(--border-gold);
+  color: var(--gold); padding: 14px 28px;
+  font-size: 0.68rem; letter-spacing: 0.15em;
+  text-transform: uppercase; font-family: var(--font-sans);
+  cursor: none; transition: all var(--transition-fast);
+  text-decoration: none; margin-top: 20px;
+}
+.community-whatsapp:hover { background: rgba(201,169,110,0.1); }
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--bg-deep);
+  padding: 80px 0 40px;
+  border-top: 1px solid var(--border-subtle);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; margin-bottom: 64px;
+}
+.footer-brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem; font-weight: 300;
+  letter-spacing: 0.2em; color: var(--text-primary);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.footer-brand-tagline {
+  font-size: 0.78rem; font-style: italic;
+  font-family: var(--font-serif); color: var(--text-muted);
+  line-height: 1.6; max-width: 260px; margin-bottom: 24px;
+}
+.footer-social { display: flex; gap: 12px; }
+.social-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 0.85rem;
+  text-decoration: none; cursor: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.social-icon:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col h5 {
+  font-size: 0.6rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; font-weight: 400;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 0.8rem; color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.footer-col ul li a:hover { color: var(--text-primary); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px; border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy {
+  font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.05em;
+}
+.footer-love {
+  font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.05em;
+}
+.footer-love span { color: var(--rose-gold); }
+
+/* ============ MODAL ============ */
+#modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(12,10,11,0.85);
+  z-index: 500; display: flex;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition-med);
+  backdrop-filter: blur(8px);
+}
+#modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  max-width: 520px; width: 90%;
+  padding: 44px;
+  position: relative;
+  transform: scale(0.92);
+  transition: transform var(--transition-med);
+}
+#modal-overlay.open .modal-box { transform: scale(1); }
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; cursor: none;
+  font-size: 1.3rem; color: var(--text-muted);
+  font-family: var(--font-serif); transition: color var(--transition-fast);
+}
+.modal-close:hover { color: var(--text-primary); }
+.modal-tag {
+  font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 12px; display: block;
+}
+.modal-title {
+  font-family: var(--font-serif); font-size: 1.8rem;
+  font-weight: 300; color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.modal-price {
+  font-size: 1rem; color: var(--gold);
+  letter-spacing: 0.05em; margin-bottom: 18px;
+}
+.modal-desc {
+  font-size: 0.82rem; color: var(--text-muted);
+  line-height: 1.8; margin-bottom: 28px;
+}
+.modal-actions { display: flex; gap: 12px; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  #nav { padding: 20px 32px; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .story-grid, .experience-grid, .visit-grid { grid-template-columns: 1fr; gap: 48px; }
+  .story-visual { max-width: 420px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 768px) {
+  #nav { padding: 16px 20px; }
+  .menu-close { right: 20px; }
+  .hero-content { padding: 0 20px; }
+  .section-inner { padding: 0 20px; }
+  #collections { padding: 80px 0 60px; }
+  .collections-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .experience-grid, .story-grid, .visit-grid { grid-template-columns: 1fr; }
+  .experience-text { padding: 0; }
+  .story-stats { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .community-form { flex-direction: column; }
+  .community-input { border-right: 1px solid var(--border-gold); border-bottom: none; }
+  .story-tag { position: static; margin-top: 24px; max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .collections-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; }
+}
+
+/* ============ RIPPLE EFFECT ============ */
+.ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transform: scale(0);
+  animation: rippleAnim 0.6s linear;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ============ PAGE TRANSITION ============ */
+#page-curtain {
+  position: fixed; inset: 0;
+  background: var(--bg-deep);
+  z-index: 9997;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+#page-curtain.show { opacity: 1; pointer-events: all; }
+
+/* ============ SELECTION ============ */
+::selection { background: rgba(201,169,110,0.3); color: var(--text-primary); }
+
+/* ============ FESTIVE / EVERYDAY MOOD ============ */
+body.mood-everyday {
+  --gold: #b8a090;
+  --gold-light: #d4bfaf;
+  --wine: #3d5a6e;
+  --wine-light: #4a7080;
+  --sakhi-magenta: #3d4a6e;
+}
+body.mood-everyday #collections {
+  background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(61,90,110,0.05) 100%);
+}
+</style>
+</head>
+
+<body class="loading">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">SAKHI</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- PAGE TRANSITION CURTAIN -->
+<div id="page-curtain"></div>
+
+<!-- SPOTLIGHT -->
+<div id="spotlight"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <button class="menu-close" id="menu-close-btn">✕</button>
+  <a href="#collections" class="mobile-nav-link">Collections</a>
+  <a href="#experience" class="mobile-nav-link">Experience</a>
+  <a href="#bestsellers" class="mobile-nav-link">Best Sellers</a>
+  <a href="#story" class="mobile-nav-link">Our Story</a>
+  <a href="#visit" class="mobile-nav-link">Visit Us</a>
+  <a href="https://wa.me/919820192848" class="mobile-nav-link" style="color:var(--gold)">WhatsApp</a>
+</div>
+
+<!-- NAVIGATION -->
+<header>
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-name">Sakhi</span>
+      <span class="nav-logo-sub">Borivali East · Women-Owned · Since 2012</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#bestsellers">Best Sellers</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#visit">Visit Us</a></li>
+    </ul>
+    <a href="https://wa.me/919820192848" class="nav-cta" target="_blank" rel="noopener">
+      <span>WhatsApp</span>
+    </a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ========================
+       1. HERO
+       ======================== -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-image-placeholder"></div>
+    <!-- Floating fabric shapes -->
+    <div class="fabric-shape"></div>
+    <div class="fabric-shape"></div>
+    <div class="fabric-shape"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <span class="hero-label">Borivali East, Mumbai · Women-Owned Boutique</span>
+      <!-- EDIT: Main headline -->
+      <h1 class="hero-heading">
+        Timeless Indian<br>
+        <em>Elegance.</em><br>
+        Born in Borivali East.
+      </h1>
+      <!-- EDIT: Subtext -->
+      <p class="hero-subtext">
+        Luxury Indian wear crafted for modern Mumbai women — from everyday chic to bridal dreams. Trusted by thousands across the city for over 12 years.
+      </p>
+      <div class="hero-ctas">
+        <a href="#collections" class="btn-primary"><span>Explore Collections</span></a>
+        <a href="#visit" class="btn-outline">Visit Our Store</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-cue">
+      <span class="scroll-label">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Ornamental divider -->
+  <div class="ornament-divider">
+    <svg viewBox="0 0 280 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="12" x2="100" y2="12" stroke="#c9a96e" stroke-width="0.5" stroke-opacity="0.5"/>
+      <path d="M130 12 C130 6 140 2 140 12 C140 2 150 6 150 12" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-opacity="0.8"/>
+      <circle cx="140" cy="12" r="3" fill="none" stroke="#c9a96e" stroke-width="0.8" stroke-opacity="0.6"/>
+      <circle cx="116" cy="12" r="1.5" fill="#c9a96e" fill-opacity="0.4"/>
+      <circle cx="164" cy="12" r="1.5" fill="#c9a96e" fill-opacity="0.4"/>
+      <line x1="180" y1="12" x2="280" y2="12" stroke="#c9a96e" stroke-width="0.5" stroke-opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ========================
+       2. COLLECTIONS
+       ======================== -->
+  <section id="collections">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Curated for You</span>
+        <h2 class="section-title">The <em>Sakhi</em> Collections</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- Mood Toggle -->
+      <div class="reveal reveal-delay-1">
+        <div class="mood-toggle-wrap">
+          <button class="mood-btn active" data-mood="festive">✦ Festive</button>
+          <button class="mood-btn" data-mood="everyday">◇ Everyday</button>
+        </div>
+      </div>
+
+      <!-- Collection Cards -->
+      <!-- EDIT: Replace card-img background-image with your collection photos -->
+      <div class="collections-grid" id="collections-grid">
+
+        <div class="collection-card reveal reveal-delay-1" data-category="sarees" data-name="Sarees" data-desc="Handpicked sarees in Banarasi, chanderi, georgette and silk — from understated elegance to bridal splendour." data-price="₹2,500 onwards">
+          <div class="card-img sarees"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <span class="card-tag">Heritage & Modern</span>
+            <h3 class="card-name">Sarees</h3>
+            <p class="card-sub">Banarasi, chanderi, georgette & more — draped in stories.</p>
+            <button class="card-explore">
+              Explore
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="collection-card reveal reveal-delay-2" data-category="lehengas" data-name="Lehengas" data-desc="Voluminous, hand-embroidered lehengas for weddings, receptions and sangeet nights to remember." data-price="₹8,000 onwards">
+          <div class="card-img lehengas"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <span class="card-tag">Bridal & Festive</span>
+            <h3 class="card-name">Lehengas</h3>
+            <p class="card-sub">Embroidered for grand occasions and intimate celebrations alike.</p>
+            <button class="card-explore">
+              Explore
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="collection-card reveal reveal-delay-3" data-category="kurtis" data-name="Kurtis & Sets" data-desc="Chic, versatile kurta sets and co-ords that move with you from office hours to evening soirées." data-price="₹1,200 onwards">
+          <div class="card-img kurtis"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <span class="card-tag">Daily Luxe</span>
+            <h3 class="card-name">Kurtis & Sets</h3>
+            <p class="card-sub">Refined silhouettes for the modern Mumbai woman on the move.</p>
+            <button class="card-explore">
+              Explore
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="collection-card reveal reveal-delay-4" data-category="bridal" data-name="Bridal & Reception" data-desc="Your most important day, dressed by Sakhi — bespoke bridal sarees, lehengas and reception outfits with couture-level attention." data-price="₹15,000 onwards">
+          <div class="card-img bridal"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <span class="card-tag">The Wedding Edit</span>
+            <h3 class="card-name">Bridal & Reception</h3>
+            <p class="card-sub">Where your most beautiful story begins.</p>
+            <button class="card-explore">
+              Explore
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="collection-card reveal reveal-delay-5" data-category="everyday" data-name="Everyday Chic" data-desc="Thoughtfully crafted, comfortable yet elevated everyday wear — because style should never be saved only for special days." data-price="₹900 onwards">
+          <div class="card-img everyday"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <span class="card-tag">Every Day, Every You</span>
+            <h3 class="card-name">Everyday Chic</h3>
+            <p class="card-sub">Dressing beautifully shouldn't wait for the weekend.</p>
+            <button class="card-explore">
+              Explore
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       3. EXPERIENCE SAKHI
+       ======================== -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="experience-grid">
+        <div class="experience-visual reveal">
+          <!-- REPLACE: Add your actual store interior photo as background-image -->
+          <div class="experience-img">
+            <span class="experience-monogram">S</span>
+          </div>
+          <div class="experience-corner"></div>
+          <div class="ar-badge">
+            <span class="ar-badge-label">In-Store Only</span>
+            <span class="ar-badge-text">Try Before You Decide</span>
+          </div>
+        </div>
+        <div class="experience-text reveal reveal-delay-2">
+          <span class="section-label">The Sakhi Way</span>
+          <h2 class="section-title">Feel Every <em>Drape.</em><br>Find Your Story.</h2>
+          <div class="section-divider"></div>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.9;max-width:480px;">
+            Visit us in Borivali East — just minutes from the station and Shatabdi Hospital. Feel every fabric between your fingers, test every fit, and receive honest, personalised styling guidance before you decide.
+          </p>
+          <div class="experience-features">
+            <div class="exp-feature">
+              <div class="exp-icon">✦</div>
+              <div>
+                <h4>Expert Styling Advice</h4>
+                <p>Our team has over a decade of styling experience — helping women of all sizes and occasions find their perfect look.</p>
+              </div>
+            </div>
+            <div class="exp-feature">
+              <div class="exp-icon">◈</div>
+              <div>
+                <h4>Premium Fabric Selection</h4>
+                <p>Touch and compare — Banarasi silks, chanderi weaves, georgettes, and exclusive hand-embroidered pieces curated each season.</p>
+              </div>
+            </div>
+            <div class="exp-feature">
+              <div class="exp-icon">◇</div>
+              <div>
+                <h4>Bespoke Bridal Consultation</h4>
+                <p>Private bridal sessions available. Walk in for your dream outfit, walk out ready for the most memorable chapter of your life.</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:36px;">
+            <a href="https://wa.me/919820192848?text=Hi%20Sakhi!%20I'd%20like%20to%20book%20a%20styling%20session." class="btn-primary" target="_blank" rel="noopener" style="cursor:pointer;">
+              <span>Book a Styling Visit</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       4. FABRIC LIGHT PLAY LAB
+       ======================== -->
+  <section id="fabric-lab">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center">
+        <span class="section-label">Sensory Lab</span>
+        <h2 class="section-title">The <em>Fabric</em> of Sakhi</h2>
+        <div class="section-divider" style="margin:24px auto 0;"></div>
+      </div>
+      <div id="fabric-canvas-wrap" class="reveal reveal-delay-2">
+        <canvas id="fabric-canvas"></canvas>
+      </div>
+      <p class="fabric-lab-hint reveal reveal-delay-3">Move your cursor across the canvas to feel how light plays on our fabrics</p>
+    </div>
+  </section>
+
+  <!-- ========================
+       5. BESTSELLERS CAROUSEL
+       ======================== -->
+  <section id="bestsellers">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Much Loved</span>
+        <h2 class="section-title">Borivali's <em>Favourites</em></h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+
+    <div style="padding-left:clamp(24px,5vw,80px);">
+      <div class="carousel-track-wrap" id="carousel-wrap">
+        <!-- EDIT: Replace card gradient backgrounds with your product images (background-image: url('product.jpg')) -->
+        <div class="carousel-track" id="carousel-track">
+          <div class="bs-card">
+            <div class="bs-card-img">Silk Banarasi</div>
+            <button class="bs-wishlist" title="Add to Wishlist"><span class="wishlist-heart">♡</span></button>
+            <div class="bs-card-info">
+              <span class="bs-badge">Borivali Favourite</span>
+              <div class="bs-card-name">Royal Banarasi Saree</div>
+              <div class="bs-price">₹4,500 onwards</div>
+            </div>
+          </div>
+          <div class="bs-card">
+            <div class="bs-card-img">Mirror Work</div>
+            <button class="bs-wishlist" title="Add to Wishlist"><span class="wishlist-heart">♡</span></button>
+            <div class="bs-card-info">
+              <span class="bs-badge">Festive Bestseller</span>
+              <div class="bs-card-name">Embroidered Lehenga</div>
+              <div class="bs-price">₹11,500 onwards</div>
+            </div>
+          </div>
+          <div class="bs-card">
+            <div class="bs-card-img">Chanderi Set</div>
+            <button class="bs-wishlist" title="Add to Wishlist"><span class="wishlist-heart">♡</span></button>
+            <div class="bs-card-info">
+              <span class="bs-badge">Wedding Edit</span>
+              <div class="bs-card-name">Chanderi Kurta Set</div>
+              <div class="bs-price">₹2,800 onwards</div>
+            </div>
+          </div>
+          <div class="bs-card">
+            <div class="bs-card-img">Bridal Red</div>
+            <button class="bs-wishlist" title="Add to Wishlist"><span class="wishlist-heart">♡</span></button>
+            <div class="bs-card-info">
+              <span class="bs-badge">Bridal Pick</span>
+              <div class="bs-card-name">Bridal Red Lehenga</div>
+              <div class="bs-price">₹22,000 onwards</div>
+            </div>
+          </div>
+          <div class="bs-card">
+            <div class="bs-card-img">Silk Georgette</div>
+            <button class="bs-wishlist" title="Add to Wishlist"><span class="wishlist-heart">♡</span></button>
+            <div class="bs-card-info">
+              <span class="bs-badge">Everyday Luxe</span>
+              <div class="bs-card-name">Silk Georgette Saree</div>
+              <div class="bs-price">₹3,200 onwards</div>
+            </div>
+          </div>
+          <div class="bs-card">
+            <div class="bs-card-img">Anarkali Set</div>
+            <button class="bs-wishlist" title="Add to Wishlist"><span class="wishlist-heart">♡</span></button>
+            <div class="bs-card-info">
+              <span class="bs-badge">New Arrival</span>
+              <div class="bs-card-name">Anarkali Co-ord Set</div>
+              <div class="bs-price">₹3,800 onwards</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-controls" style="padding:0 clamp(24px,5vw,80px);">
+        <button class="carousel-btn" id="carousel-prev">←</button>
+        <button class="carousel-btn" id="carousel-next">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       6. STORY / ABOUT
+       ======================== -->
+  <section id="story">
+    <div class="section-inner">
+      <div class="story-grid">
+        <div class="story-visual reveal">
+          <!-- REPLACE: Add your brand/boutique photo as background-image -->
+          <div class="story-img">
+            <div class="story-img-inner-text">Women's<br>Wear<br>Since '12</div>
+          </div>
+          <div class="story-tag">
+            <p class="story-tag-text">"Every woman deserves to feel like the most beautiful version of herself."</p>
+            <span class="story-tag-sub">— The Sakhi Promise</span>
+          </div>
+        </div>
+        <div class="story-text reveal reveal-delay-2">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">12+ Years of<br><em>Dressing Dreams</em></h2>
+          <div class="section-divider"></div>
+          <!-- EDIT: About copy -->
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.95;margin-bottom:20px;">
+            SAKHI WOMEN'S WEAR is a proudly women-owned boutique in the heart of Borivali East — bringing runway-inspired Indian silhouettes, premium fabrics, and inclusive fits together under one welcoming roof.
+          </p>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.95;margin-bottom:20px;">
+            For over 12 years, we have been the trusted styling destination for Mumbai's women — for weddings, festivals, Diwali celebrations, office days, and every beautiful moment in between.
+          </p>
+          <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.95;">
+            We believe elegance is not a privilege — it is a birthright. And we've built SAKHI to make sure every woman who walks through our doors walks out feeling exactly that.
+          </p>
+          <div class="story-stats">
+            <div class="stat-box">
+              <div class="stat-num">12+</div>
+              <div class="stat-label">Years in Borivali East</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">5000+</div>
+              <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">500+</div>
+              <div class="stat-label">Styles in Stock</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">1</div>
+              <div class="stat-label">Borivali East, Always</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ornamental divider -->
+  <div class="ornament-divider">
+    <svg viewBox="0 0 280 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="12" x2="100" y2="12" stroke="#c9a96e" stroke-width="0.5" stroke-opacity="0.5"/>
+      <path d="M130 12 C130 6 140 2 140 12 C140 2 150 6 150 12" stroke="#c9a96e" stroke-width="0.8" fill="none" stroke-opacity="0.8"/>
+      <circle cx="140" cy="12" r="3" fill="none" stroke="#c9a96e" stroke-width="0.8" stroke-opacity="0.6"/>
+      <circle cx="116" cy="12" r="1.5" fill="#c9a96e" fill-opacity="0.4"/>
+      <circle cx="164" cy="12" r="1.5" fill="#c9a96e" fill-opacity="0.4"/>
+      <line x1="180" y1="12" x2="280" y2="12" stroke="#c9a96e" stroke-width="0.5" stroke-opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ========================
+       7. TESTIMONIALS
+       ======================== -->
+  <section id="testimonials">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Customer Love</span>
+        <h2 class="section-title">What Mumbai<br><em>Women Say</em></h2>
+        <div class="section-divider"></div>
+      </div>
+      <!-- EDIT: Replace with real customer reviews -->
+      <div class="testimonials-grid">
+        <div class="testi-card reveal reveal-delay-1">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">I wore a Sakhi saree to my cousin's reception and received so many compliments all evening. The drape, the quality, and the colour — everything was perfect. Urvi aunty really has an eye for beauty!</p>
+          <div class="testi-author">
+            <div class="testi-avatar">P</div>
+            <div>
+              <div class="testi-name">Priya Desai</div>
+              <div class="testi-location">Borivali East, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-2">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Got my bridal lehenga from Sakhi and I could not have asked for anything more. The embroidery was stunning and it fit like it was made just for me. Truly the best boutique in Borivali.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">S</div>
+            <div>
+              <div class="testi-name">Sneha Mehta</div>
+              <div class="testi-location">Dahisar, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-3">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">I've been shopping at Sakhi since 2016 and they never disappoint. The kurtis are chic without being OTT — perfect for office and casual outings. The pricing is so honest too.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">N</div>
+            <div>
+              <div class="testi-name">Neha Patil</div>
+              <div class="testi-location">Kandivali, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-4">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">Came in for a Diwali outfit and ended up with three more pieces — that's the Sakhi magic! The staff helped me style everything together. My family was in awe this Diwali.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">R</div>
+            <div>
+              <div class="testi-name">Ritu Joshi</div>
+              <div class="testi-location">Borivali East, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-5">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">The Banarasi silk saree I bought here became my sister's absolute favourite wedding outfit. The quality speaks for itself. Sakhi is simply in a different league from other boutiques.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">A</div>
+            <div>
+              <div class="testi-name">Anjali Sharma</div>
+              <div class="testi-location">Goregaon, Mumbai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       8. VISIT OUR STORE
+       ======================== -->
+  <section id="visit">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">Come See Us</span>
+        <h2 class="section-title">Visit <em>Sakhi</em></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-info reveal">
+          <!-- EDIT: Store address & contact -->
+          <div class="visit-detail">
+            <div class="visit-detail-icon">◈</div>
+            <div>
+              <h4>Store Address</h4>
+              <p>Shop No. 5, Swayambhu Gaodevi Building,<br>
+              Dattpada Road, near Shatabdi Hospital,<br>
+              Chinchpada, Borivali East,<br>
+              Mumbai, Maharashtra 400066</p>
+            </div>
+          </div>
+          <div class="visit-detail">
+            <div class="visit-detail-icon">✆</div>
+            <div>
+              <h4>Call & WhatsApp</h4>
+              <a href="tel:+919820192848">+91 98201 92848</a><br>
+              <a href="https://wa.me/919820192848" target="_blank" rel="noopener" class="whatsapp-btn" style="cursor:pointer;display:inline-flex;margin-top:12px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="visit-detail">
+            <div class="visit-detail-icon">✉</div>
+            <div>
+              <h4>Email Us</h4>
+              <a href="mailto:info@sakhiwomenswear.me">info@sakhiwomenswear.me</a><br>
+              <a href="mailto:urvijoshi2014@gmail.com" style="margin-top:4px;display:inline-block;">urvijoshi2014@gmail.com</a>
+            </div>
+          </div>
+          <div class="visit-detail">
+            <div class="visit-detail-icon">◷</div>
+            <div>
+              <h4>Store Hours</h4>
+              <!-- EDIT: Update store hours -->
+              <p>Monday – Saturday: 10:30 AM – 8:30 PM<br>
+              Sunday: 11:00 AM – 8:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-placeholder reveal reveal-delay-2">
+          <div class="map-pin-pulse"></div>
+          <p class="map-address-text" style="margin-top:16px;">
+            Shop No. 5, Swayambhu Gaodevi Building<br>
+            Dattpada Road, Chinchpada<br>
+            Borivali East, Mumbai 400066<br><br>
+            <em style="font-family:var(--font-serif);color:var(--text-muted);font-size:0.82rem;">Near Shatabdi Hospital &amp; Borivali Station</em>
+          </p>
+          <a href="https://maps.google.com/?q=Shop+No+5+Swayambhu+Gaodevi+Building+Dattpada+Road+Borivali+East+Mumbai" 
+             target="_blank" rel="noopener" class="map-link" style="cursor:pointer;margin-top:20px;">
+            Open in Google Maps →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       9. NEWSLETTER & COMMUNITY
+       ======================== -->
+  <section id="community">
+    <div class="section-inner">
+      <div class="community-inner reveal">
+        <span class="section-label">Stay Connected</span>
+        <h2 class="section-title">Join the <em>Sakhi Circle</em></h2>
+        <div class="section-divider"></div>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.9;margin-bottom:8px;">
+          New drops, exclusive styling tips, Borivali-only offers, and first access to festival collections — delivered straight to your inbox and WhatsApp.
+        </p>
+        <!-- Newsletter Form -->
+        <div class="community-form">
+          <input class="community-input" type="email" placeholder="Enter your email address" aria-label="Email address">
+          <button class="btn-primary" type="button" id="subscribe-btn" onclick="handleSubscribe(event)"><span>Subscribe</span></button>
+        </div>
+        <br>
+        <!-- WhatsApp Community CTA -->
+        <a href="https://wa.me/919820192848?text=Hi!%20I'd%20like%20to%20join%20the%20Sakhi%20WhatsApp%20community." 
+           target="_blank" rel="noopener" class="community-whatsapp" style="cursor:pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+          Join Sakhi's WhatsApp Community
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================
+     FOOTER
+     ======================== -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Sakhi Women's Wear</div>
+        <p class="footer-brand-tagline">Timeless Indian elegance for modern Mumbai women. Women-owned. Borivali-rooted. Always.</p>
+        <!-- EDIT: Add real social media links -->
+        <div class="footer-social">
+          <a href="#" class="social-icon" title="Instagram" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://wa.me/919820192848" target="_blank" rel="noopener" class="social-icon" title="WhatsApp" aria-label="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+          </a>
+          <a href="mailto:info@sakhiwomenswear.me" class="social-icon" title="Email" aria-label="Email">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Collections</h5>
+        <ul>
+          <li><a href="#collections">Sarees</a></li>
+          <li><a href="#collections">Lehengas</a></li>
+          <li><a href="#collections">Kurtis & Sets</a></li>
+          <li><a href="#collections">Bridal & Reception</a></li>
+          <li><a href="#collections">Everyday Chic</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Discover</h5>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#experience">Experience Sakhi</a></li>
+          <li><a href="#bestsellers">Best Sellers</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#community">Sakhi Circle</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+919820192848">+91 98201 92848</a></li>
+          <li><a href="mailto:info@sakhiwomenswear.me">info@sakhiwomenswear.me</a></li>
+          <li><a href="https://wa.me/919820192848" target="_blank" rel="noopener">WhatsApp Us</a></li>
+          <li><a href="#visit">Store Address</a></li>
+          <!-- EDIT: Update Google Maps link with actual Place -->
+          <li><a href="https://maps.google.com/?q=Borivali+East+Mumbai" target="_blank" rel="noopener">Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 Sakhi Women's Wear, Borivali East, Mumbai. All rights reserved.</span>
+      <span class="footer-love">Crafted with <span>♥</span> in Mumbai</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================
+     MODAL
+     ======================== -->
+<div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <span class="modal-tag" id="modal-tag"></span>
+    <h3 class="modal-title" id="modal-title"></h3>
+    <div class="modal-price" id="modal-price"></div>
+    <p class="modal-desc" id="modal-desc"></p>
+    <div class="modal-actions">
+      <a href="https://wa.me/919820192848" target="_blank" rel="noopener" class="btn-primary" style="cursor:pointer;">
+        <span>Enquire on WhatsApp</span>
+      </a>
+      <button class="btn-outline" onclick="closeModal()" style="cursor:none;">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   SAKHI WOMEN'S WEAR — JavaScript
+   ===================================================== */
+
+/* ---- LOADER ---- */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    document.body.classList.remove('loading');
+    initHeroCanvas();
+    initFabricCanvas();
+    animateCounters();
+  }, 2200);
+});
+
+/* ---- CUSTOM CURSOR ---- */
+const cursorDot  = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+let ringX  = window.innerWidth/2,  ringY  = window.innerHeight/2;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursorDot.style.left  = mouseX + 'px';
+  cursorDot.style.top   = mouseY + 'px';
+  document.getElementById('spotlight').style.background =
+    `radial-gradient(circle 280px at ${mouseX}px ${mouseY}px, rgba(201,169,110,0.04) 0%, transparent 70%)`;
+});
+(function ringLoop() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(ringLoop);
+})();
+document.querySelectorAll('a, button, .collection-card, .bs-card, .testi-card, .mood-btn, .carousel-btn').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+/* ---- SCROLL PROGRESS ---- */
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / docHeight) * 100;
+  document.getElementById('scroll-progress').style.width = pct + '%';
+}, { passive: true });
+
+/* ---- NAV SCROLL ---- */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ---- MOBILE MENU ---- */
+document.getElementById('nav-hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.add('open');
+});
+document.getElementById('menu-close-btn').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.remove('open');
+});
+document.querySelectorAll('.mobile-nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('open');
+  });
+});
+
+/* ---- PAGE TRANSITION ON NAV CLICKS ---- */
+const curtain = document.getElementById('page-curtain');
+function smoothNavTo(targetId) {
+  curtain.classList.add('show');
+  setTimeout(() => {
+    const el = document.getElementById(targetId);
+    if(el) el.scrollIntoView({ behavior: 'instant' });
+    curtain.classList.remove('show');
+  }, 300);
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if(href.length > 1) {
+      e.preventDefault();
+      smoothNavTo(href.slice(1));
+    }
+  });
+});
+
+/* ---- REVEAL ON SCROLL ---- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ---- HERO CANVAS (living fabric effect) ---- */
+function initHeroCanvas() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, t = 0;
+  let mx = 0.5, my = 0.5;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  document.getElementById('hero').addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mx = (e.clientX - r.left) / W;
+    my = (e.clientY - r.top)  / H;
+  });
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // Draw multiple flowing gradient orbs
+    const orbs = [
+      { x: 0.75 + mx*0.08 + Math.sin(t*0.4)*0.05, y: 0.4 + my*0.05 + Math.cos(t*0.3)*0.06, r: 0.55, c1: 'rgba(107,45,62,0.22)', c2: 'transparent' },
+      { x: 0.55 + Math.cos(t*0.25)*0.06,          y: 0.6 + Math.sin(t*0.35)*0.05,            r: 0.4,  c1: 'rgba(125,31,94,0.15)', c2: 'transparent' },
+      { x: 0.2  + Math.sin(t*0.2)*0.04,            y: 0.35+ Math.cos(t*0.28)*0.04,            r: 0.3,  c1: 'rgba(201,169,110,0.07)', c2: 'transparent' },
+    ];
+    orbs.forEach(o => {
+      const grd = ctx.createRadialGradient(o.x*W, o.y*H, 0, o.x*W, o.y*H, o.r*Math.max(W,H));
+      grd.addColorStop(0, o.c1);
+      grd.addColorStop(1, o.c2);
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+    });
+    // Flowing lines (simulate fabric threads)
+    ctx.save();
+    for(let i=0; i<7; i++) {
+      const yBase = (i/7)*H + Math.sin(t*0.3 + i)*20;
+      ctx.beginPath();
+      ctx.moveTo(0, yBase);
+      for(let x=0; x<=W; x+=18) {
+        const wave = Math.sin((x/W)*Math.PI*3 + t*0.5 + i*0.8) * (12 + i*3);
+        ctx.lineTo(x, yBase + wave);
+      }
+      ctx.strokeStyle = `rgba(201,169,110,${0.03 - i*0.003})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    ctx.restore();
+    t += 0.012;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ---- FABRIC LIGHT CANVAS ---- */
+function initFabricCanvas() {
+  const canvas = document.getElementById('fabric-canvas');
+  const wrap   = document.getElementById('fabric-canvas-wrap');
+  const ctx    = canvas.getContext('2d');
+  let W, H, t = 0;
+  let lx = 0.5, ly = 0.5, tlx = 0.5, tly = 0.5;
+
+  function resize() {
+    W = canvas.width  = wrap.offsetWidth;
+    H = canvas.height = wrap.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  wrap.addEventListener('mousemove', e => {
+    const r = wrap.getBoundingClientRect();
+    tlx = (e.clientX - r.left) / W;
+    tly = (e.clientY - r.top)  / H;
+  });
+  wrap.addEventListener('touchmove', e => {
+    const r = wrap.getBoundingClientRect();
+    tlx = (e.touches[0].clientX - r.left) / W;
+    tly = (e.touches[0].clientY - r.top)  / H;
+  }, { passive: true });
+
+  const FABRIC_COLORS = [
+    [107, 45, 62],
+    [201,169,110],
+    [125, 31, 94],
+    [181,122,114],
+    [50,  35, 42],
+  ];
+
+  function draw() {
+    lx += (tlx - lx) * 0.06;
+    ly += (tly - ly) * 0.06;
+    ctx.clearRect(0, 0, W, H);
+
+    // Deep base
+    ctx.fillStyle = '#0c0a0b';
+    ctx.fillRect(0, 0, W, H);
+
+    // Woven fabric grid lines
+    ctx.save();
+    const lineCount = 28;
+    for(let i = 0; i < lineCount; i++) {
+      const frac = i / lineCount;
+      const sway = Math.sin(frac * Math.PI * 4 + t * 0.5) * 6;
+      // Horizontal warp threads
+      ctx.beginPath();
+      ctx.moveTo(0, frac * H + sway);
+      for(let x = 0; x <= W; x += 12) {
+        const yOff = Math.sin((x/W)*Math.PI*5 + t*0.7 + i*0.4)*4;
+        ctx.lineTo(x, frac * H + sway + yOff);
+      }
+      ctx.strokeStyle = `rgba(201,169,110,${0.04 + 0.04*Math.sin(i*0.6+t)})`;
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+      // Vertical weft threads
+      ctx.beginPath();
+      ctx.moveTo(frac * W + sway*0.5, 0);
+      for(let y = 0; y <= H; y += 12) {
+        const xOff = Math.cos((y/H)*Math.PI*5 + t*0.6 + i*0.5)*3;
+        ctx.lineTo(frac * W + sway*0.5 + xOff, y);
+      }
+      ctx.strokeStyle = `rgba(181,122,114,${0.025 + 0.02*Math.cos(i*0.7+t*0.8)})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Light source following cursor
+    const grd = ctx.createRadialGradient(lx*W, ly*H, 0, lx*W, ly*H, W*0.5);
+    grd.addColorStop(0,   'rgba(232,207,160,0.18)');
+    grd.addColorStop(0.35,'rgba(201,169,110,0.06)');
+    grd.addColorStop(1,   'transparent');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle shimmer dots (embroidery sequin effect)
+    ctx.save();
+    for(let i = 0; i < 60; i++) {
+      const sx = (Math.sin(i*137.5) * 0.5 + 0.5) * W;
+      const sy = (Math.cos(i*97.3)  * 0.5 + 0.5) * H;
+      const dist = Math.hypot(lx*W - sx, ly*H - sy);
+      const shine = Math.max(0, 1 - dist/(W*0.4));
+      const bright = 0.08 + shine*0.45;
+      const size = 1 + shine*2.5 + Math.sin(t*2+i)*0.4;
+      const col = FABRIC_COLORS[i % FABRIC_COLORS.length];
+      ctx.beginPath();
+      ctx.arc(sx + Math.sin(t*0.4+i)*1.5, sy + Math.cos(t*0.3+i)*1.2, size, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${bright})`;
+      ctx.fill();
+    }
+    ctx.restore();
+
+    t += 0.014;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ---- MOOD TOGGLE ---- */
+document.querySelectorAll('.mood-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const mood = btn.dataset.mood;
+    const grid = document.getElementById('collections-grid');
+    grid.classList.add('fading');
+    if(mood === 'everyday') document.body.classList.add('mood-everyday');
+    else document.body.classList.remove('mood-everyday');
+    setTimeout(() => grid.classList.remove('fading'), 400);
+  });
+});
+
+/* ---- COLLECTION CARD MODAL ---- */
+document.querySelectorAll('.collection-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.getElementById('modal-tag').textContent   = card.dataset.category || '';
+    document.getElementById('modal-title').textContent = card.dataset.name    || '';
+    document.getElementById('modal-price').textContent = card.dataset.price   || '';
+    document.getElementById('modal-desc').textContent  = card.dataset.desc    || '';
+    document.getElementById('modal-overlay').classList.add('open');
+  });
+});
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if(e.target === document.getElementById('modal-overlay')) closeModal();
+});
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+/* ---- 3D TILT ON CARDS ---- */
+document.querySelectorAll('.collection-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width/2)  / (r.width/2);
+    const y = (e.clientY - r.top  - r.height/2) / (r.height/2);
+    card.style.transform = `perspective(800px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-6px) scale(1.01)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+/* ---- BESTSELLER CAROUSEL (drag + inertia) ---- */
+const track = document.getElementById('carousel-track');
+let isDragging = false, startX = 0, scrollLeft = 0, vel = 0, lastX = 0, animId;
+
+track.addEventListener('mousedown', e => {
+  isDragging = true; startX = e.pageX; scrollLeft = track._x || 0; lastX = e.pageX;
+  cancelAnimationFrame(animId);
+  vel = 0;
+});
+track.addEventListener('touchstart', e => {
+  isDragging = true; startX = e.touches[0].pageX; scrollLeft = track._x || 0; lastX = e.touches[0].pageX;
+  cancelAnimationFrame(animId);
+  vel = 0;
+}, { passive: true });
+document.addEventListener('mousemove', e => {
+  if(!isDragging) return;
+  vel = e.pageX - lastX; lastX = e.pageX;
+  const dx = e.pageX - startX;
+  applyCarouselX(scrollLeft + dx);
+});
+document.addEventListener('touchmove', e => {
+  if(!isDragging) return;
+  vel = e.touches[0].pageX - lastX; lastX = e.touches[0].pageX;
+  const dx = e.touches[0].pageX - startX;
+  applyCarouselX(scrollLeft + dx);
+}, { passive: true });
+function onDragEnd() {
+  if(!isDragging) return;
+  isDragging = false;
+  inertiaScroll();
+}
+document.addEventListener('mouseup', onDragEnd);
+document.addEventListener('touchend', onDragEnd);
+
+function applyCarouselX(x) {
+  const maxScroll = -(track.scrollWidth - track.parentElement.offsetWidth);
+  x = Math.max(maxScroll, Math.min(0, x));
+  track._x = x;
+  track.style.transform = `translateX(${x}px)`;
+}
+function inertiaScroll() {
+  cancelAnimationFrame(animId);
+  function step() {
+    if(Math.abs(vel) < 0.5) return;
+    applyCarouselX((track._x || 0) + vel);
+    vel *= 0.92;
+    animId = requestAnimationFrame(step);
+  }
+  step();
+}
+document.getElementById('carousel-prev').addEventListener('click', () => {
+  applyCarouselX((track._x || 0) + 300);
+});
+document.getElementById('carousel-next').addEventListener('click', () => {
+  applyCarouselX((track._x || 0) - 300);
+});
+
+/* ---- WISHLIST HEART FLOAT ---- */
+document.querySelectorAll('.bs-wishlist').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const heart = btn.querySelector('.wishlist-heart');
+    heart.textContent = '♥';
+    heart.style.color = 'var(--rose-gold)';
+    const rect = btn.getBoundingClientRect();
+    const floater = document.createElement('div');
+    floater.className = 'heart-float';
+    floater.textContent = '♥';
+    floater.style.left = (rect.left + rect.width/2) + 'px';
+    floater.style.top  = (rect.top + rect.height/2) + 'px';
+    document.body.appendChild(floater);
+    floater.addEventListener('animationend', () => floater.remove());
+    addRipple(btn, e);
+  });
+});
+
+/* ---- RIPPLE EFFECT ---- */
+function addRipple(el, e) {
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  const size = Math.max(el.offsetWidth, el.offsetHeight);
+  const r    = el.getBoundingClientRect();
+  ripple.style.width  = ripple.style.height = size + 'px';
+  ripple.style.left   = (e.clientX - r.left - size/2) + 'px';
+  ripple.style.top    = (e.clientY - r.top  - size/2) + 'px';
+  el.appendChild(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove());
+}
+document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+  btn.addEventListener('click', e => addRipple(btn, e));
+});
+
+/* ---- ANIMATED COUNTERS ---- */
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const target = parseInt(el.textContent.replace(/\D/g,''));
+    if(!target) return;
+    const suffix = el.textContent.replace(/[0-9]/g,'');
+    let count = 0, duration = 1800, start = null;
+    function step(ts) {
+      if(!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      count = Math.floor(ease * target);
+      el.textContent = count.toLocaleString('en-IN') + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    const obs = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting) { requestAnimationFrame(step); obs.disconnect(); }
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  });
+}
+
+/* ---- NEWSLETTER SUBSCRIBE ---- */
+function handleSubscribe(e) {
+  addRipple(document.getElementById('subscribe-btn'), e);
+  const input = document.querySelector('.community-input');
+  if(input.value && input.value.includes('@')) {
+    const btn = document.getElementById('subscribe-btn');
+    btn.querySelector('span').textContent = '✓ Subscribed!';
+    btn.style.background = 'var(--wine)';
+    input.value = '';
+    setTimeout(() => {
+      btn.querySelector('span').textContent = 'Subscribe';
+      btn.style.background = '';
+    }, 3000);
+  }
+}
+
+/* ---- BACKGROUND GRADIENT SHIFT ON SCROLL ---- */
+let lastScrollY = 0;
+window.addEventListener('scroll', () => {
+  lastScrollY = window.scrollY;
+  // Subtle parallax on hero content
+  const heroContent = document.querySelector('.hero-content');
+  if(heroContent && lastScrollY < window.innerHeight) {
+    heroContent.style.transform = `translateY(${lastScrollY * 0.15}px)`;
+  }
+}, { passive: true });
+
+/* ---- PREFERS REDUCED MOTION ---- */
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.fabric-shape').forEach(el => el.style.animation = 'none');
+  document.documentElement.style.setProperty('--transition-slow','0.3s ease');
+  document.documentElement.style.setProperty('--transition-med','0.2s ease');
+}
+</script>
+
+</body>
+</html>
