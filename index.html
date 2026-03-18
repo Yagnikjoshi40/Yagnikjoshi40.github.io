@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAKHI WOMEN'S WEAR — Timeless Indian Elegance, Borivali East</title>
+<meta name="description" content="Premium women's ethnic & fusion wear. Sarees, Lehengas, Kurtis, Bridal & more. Women-owned boutique in Borivali East, Mumbai. Trusted 12+ years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* =========================================
+   SAKHI — CSS VARIABLES
+   ========================================= */
+:root {
+  --mag:       #9B1B6B;
+  --mag-deep:  #6D0F4A;
+  --mag-glow:  #C4337A;
+  --mag-soft:  #E8A0C8;
+  --gold:      #D4A853;
+  --gold-lt:   #F0CB7A;
+  --gold-pale: #FBE8C0;
+  --wine:      #5C1030;
+  --rose:      #C97B8E;
+  --saffron:   #E8821A;
+  --teal:      #1A6B6B;
+  --ivory:     #FDF6EC;
+
+  --bg0: #080407;
+  --bg1: #100810;
+  --bg2: #1A1020;
+  --bg3: #221530;
+
+  --t1:  #FDF6EC;
+  --t2:  #C4A8B8;
+  --t3:  #7A5A6E;
+
+  --bg:    rgba(212,168,83,.28);
+  --bm:    rgba(155,27,107,.38);
+  --bs:    rgba(253,246,236,.06);
+
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+}
+
+/* =========================================
+   RESET
+   ========================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg0);color:var(--t1);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:none;border:none;background:none}
+::selection{background:rgba(155,27,107,.4);color:var(--ivory)}
+
+/* =========================================
+   LOADER — 100% CSS, ZERO JS dependency
+   Uses animation-fill-mode:forwards so it
+   stays hidden after the animation ends.
+   The page content (#wrap) fades in after.
+   ========================================= */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg0);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:26px;
+  /* Fades out at 2s, pointer-events removed immediately after */
+  animation:ldrOut .7s 2s ease-out forwards;
+}
+@keyframes ldrOut{
+  0%  {opacity:1;pointer-events:all}
+  100%{opacity:0;pointer-events:none;visibility:hidden}
+}
+.ln{
+  font-family:var(--serif);
+  font-size:clamp(3rem,8vw,5.5rem);
+  letter-spacing:.42em;font-weight:300;
+  background:linear-gradient(135deg,var(--gold-lt),var(--mag-soft),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:lFU .8s .15s ease-out both;
+}
+.ls{
+  font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:var(--t3);
+  animation:lFU .6s .45s ease-out both;
+}
+.lb{width:200px;height:1px;background:rgba(212,168,83,.14);overflow:hidden;animation:lFU .4s .35s ease-out both}
+.lf{height:100%;width:0;background:linear-gradient(90deg,var(--mag),var(--gold));box-shadow:0 0 10px var(--mag-glow);animation:lFill 1.5s .45s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes lFill{to{width:100%}}
+@keyframes lFU{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* Main content wrapper — invisible until loader done */
+#wrap{
+  opacity:0;
+  animation:wIn .8s 2.4s ease-out forwards;
+}
+@keyframes wIn{to{opacity:1}}
+
+/* =========================================
+   SCROLL PROGRESS
+   ========================================= */
+#prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:300;background:linear-gradient(90deg,var(--wine),var(--mag),var(--gold),var(--saffron));box-shadow:0 0 10px var(--mag);transition:width .1s;pointer-events:none}
+
+/* =========================================
+   CURSOR
+   ========================================= */
+#cd,#cr{position:fixed;top:0;left:0;pointer-events:none;z-index:9990;transform:translate(-50%,-50%)}
+#cd{width:9px;height:9px;background:var(--gold);border-radius:50%;mix-blend-mode:screen;transition:width .25s,height .25s,background .25s}
+#cr{width:38px;height:38px;border:1px solid rgba(196,51,122,.6);border-radius:50%;opacity:.7;transition:width .25s,height .25s,opacity .25s}
+.hov #cd{width:16px;height:16px;background:var(--mag-soft)}
+.hov #cr{width:58px;height:58px;opacity:.35}
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:26px 54px;transition:padding .4s,background .4s}
+#nav.s{background:rgba(8,4,7,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:13px 54px;border-bottom:1px solid var(--bg)}
+.nb{display:flex;flex-direction:column;gap:3px}
+.nb-n{font-family:var(--serif);font-size:1.35rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;line-height:1;background:linear-gradient(90deg,var(--gold-lt),var(--mag-soft));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nb-s{font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:var(--t3)}
+.nl{display:flex;gap:34px;list-style:none}
+.nl a{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--t2);position:relative;transition:color .2s}
+.nl a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--mag),var(--gold));transition:width .4s}
+.nl a:hover{color:var(--gold-lt)}.nl a:hover::after{width:100%}
+.nwa{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;padding:11px 22px;color:var(--ivory);background:linear-gradient(135deg,var(--mag-deep),var(--mag));border:1px solid rgba(196,51,122,.4);box-shadow:0 0 18px rgba(155,27,107,.3);transition:box-shadow .2s;white-space:nowrap}
+.nwa:hover{box-shadow:0 0 30px rgba(155,27,107,.6)}
+.nbg{display:none;flex-direction:column;gap:5px;padding:4px}
+.nbg span{display:block;width:24px;height:1px;background:var(--t1);transition:.4s}
+#mob{display:none;position:fixed;inset:0;background:rgba(8,4,7,.97);z-index:198;flex-direction:column;align-items:center;justify-content:center;gap:38px}
+#mob.on{display:flex}
+#mob a{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--t1);letter-spacing:.08em;transition:color .2s}
+#mob a:hover{color:var(--gold-lt)}
+.mbx{position:absolute;top:26px;right:44px;font-family:var(--serif);font-size:1.8rem;color:var(--t3)}
+
+/* =========================================
+   SHARED UTILITIES
+   ========================================= */
+section{position:relative;overflow:hidden}
+.inn{max-width:1380px;margin:0 auto;padding:0 clamp(20px,5vw,80px)}
+.slbl{font-size:.57rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px;font-weight:400}
+.stit{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:300;line-height:1.1;color:var(--t1);margin-bottom:18px}
+.stit em{font-style:italic;background:linear-gradient(135deg,var(--gold-lt),var(--mag-soft));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sdv{width:56px;height:2px;margin:20px 0 44px;background:linear-gradient(90deg,var(--mag),var(--gold),transparent);box-shadow:0 0 8px rgba(155,27,107,.45)}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+.orn{text-align:center;padding:8px 0;opacity:.38}
+.orn svg{width:300px;max-width:80vw}
+.rpl{position:absolute;border-radius:50%;background:rgba(255,255,255,.14);transform:scale(0);animation:rplA .6s linear;pointer-events:none}
+@keyframes rplA{to{transform:scale(4);opacity:0}}
+.bg-btn{display:inline-block;position:relative;overflow:hidden;font-family:var(--sans);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:15px 36px;color:var(--ivory);background:linear-gradient(135deg,var(--mag-deep),var(--mag),var(--mag-glow));box-shadow:0 0 22px rgba(155,27,107,.45),inset 0 0 0 1px rgba(255,255,255,.08);transition:box-shadow .2s,transform .2s}
+.bg-btn:hover{box-shadow:0 0 38px rgba(196,51,122,.65);transform:translateY(-2px)}
+.go-btn{display:inline-block;position:relative;overflow:hidden;font-family:var(--sans);font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:300;padding:14px 36px;color:var(--gold-lt);border:1px solid var(--bg);background:transparent;transition:all .3s}
+.go-btn:hover{background:rgba(212,168,83,.08);border-color:var(--gold);box-shadow:0 0 16px rgba(212,168,83,.18)}
+
+/* =========================================
+   HERO
+   ========================================= */
+#hero{height:100vh;min-height:680px;display:flex;align-items:center;background:var(--bg0)}
+#hcv{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+#pcv{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+/* REPLACE: Add background-image:url('hero.jpg') to .hph for your hero photo */
+.hph{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 65% 80% at 76% 50%,rgba(155,27,107,.42) 0%,rgba(93,16,48,.22) 38%,transparent 70%)}
+.hol{position:absolute;inset:0;z-index:2;background:linear-gradient(120deg,rgba(93,16,48,.5) 0%,rgba(8,4,7,.55) 40%,rgba(8,4,7,.88) 100%)}
+.fo{position:absolute;border-radius:60% 40% 70% 30%/50% 60% 40% 50%;opacity:.07;pointer-events:none}
+.fo1{width:640px;height:640px;right:-140px;top:-90px;background:radial-gradient(var(--mag),transparent);animation:foF 15s ease-in-out infinite alternate;z-index:1}
+.fo2{width:400px;height:400px;right:80px;bottom:-40px;background:radial-gradient(var(--gold),transparent);animation:foF 11s ease-in-out infinite alternate-reverse;z-index:1}
+.fo3{width:310px;height:490px;left:37%;top:0;background:radial-gradient(var(--wine),transparent);animation:foF 18s ease-in-out infinite alternate;z-index:1}
+.fo4{width:200px;height:200px;left:4%;bottom:22%;background:radial-gradient(var(--saffron),transparent);animation:foF 9s ease-in-out infinite alternate-reverse;z-index:1}
+@keyframes foF{0%{transform:translate(0,0)rotate(0)scale(1)}100%{transform:translate(22px,32px)rotate(9deg)scale(1.06)}}
+.hc{position:relative;z-index:3;padding:0 clamp(24px,6vw,96px);max-width:800px}
+.hey{display:flex;align-items:center;gap:12px;margin-bottom:24px;font-size:.57rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt);animation:fuA .8s 2.8s ease-out both}
+.hey::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hh1{font-family:var(--serif);font-size:clamp(3.2rem,8vw,7rem);font-weight:300;line-height:.98;color:var(--t1);margin-bottom:26px;animation:fuA 1.1s 3s ease-out both}
+.hh1 em{display:block;font-style:italic;background:linear-gradient(135deg,var(--gold-lt) 0%,var(--mag-soft) 55%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hsub{font-size:clamp(.85rem,1.4vw,1rem);color:var(--t2);line-height:1.9;max-width:440px;margin-bottom:44px;animation:fuA .9s 3.25s ease-out both}
+.hctas{display:flex;gap:14px;flex-wrap:wrap;animation:fuA .8s 3.5s ease-out both}
+@keyframes fuA{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hscr{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fuA .7s 4s ease-out both}
+.hscrl{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrP 2.2s 4.5s infinite}
+.hscrt{font-size:.49rem;letter-spacing:.24em;color:var(--t3);text-transform:uppercase}
+@keyframes scrP{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+.hbdg{position:absolute;right:clamp(20px,5vw,80px);bottom:clamp(60px,12vh,110px);z-index:3;background:rgba(26,16,32,.88);backdrop-filter:blur(14px);border:1px solid var(--bg);padding:20px 26px;min-width:155px;text-align:center;animation:fuA .8s 3.8s ease-out both;box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 18px rgba(155,27,107,.18)}
+.hbn{font-family:var(--serif);font-size:2.6rem;font-weight:300;line-height:1;background:linear-gradient(135deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hbl{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-top:5px}
+
+/* =========================================
+   TICKER
+   ========================================= */
+.tkw{background:linear-gradient(90deg,var(--mag-deep),var(--wine),var(--mag-deep));border-top:1px solid rgba(155,27,107,.45);border-bottom:1px solid rgba(155,27,107,.45);overflow:hidden;white-space:nowrap;padding:11px 0}
+.tkt{display:inline-flex;animation:tkS 26s linear infinite}
+.tki{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-pale);padding:0 34px;display:inline-flex;align-items:center;gap:12px}
+.tki::after{content:'✦';color:var(--mag-soft);font-size:.48rem}
+@keyframes tkS{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* =========================================
+   COLLECTIONS
+   ========================================= */
+#coll{padding:118px 0 96px;background:var(--bg0)}
+#coll::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 50% at 15% 40%,rgba(155,27,107,.07) 0%,transparent 60%),radial-gradient(ellipse 45% 55% at 85% 60%,rgba(93,16,48,.09) 0%,transparent 60%)}
+#coll::after{content:'';position:absolute;bottom:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--mag),var(--gold),var(--mag),transparent);opacity:.28;box-shadow:0 0 10px var(--mag)}
+.mrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:48px}
+.mtabs{display:flex;border:1px solid var(--bm);overflow:hidden;box-shadow:0 0 18px rgba(155,27,107,.12)}
+.mtab{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:12px 26px;color:var(--t3);background:transparent;position:relative;overflow:hidden;transition:color .4s}
+.mtab::before{content:'';position:absolute;inset:0;opacity:0;background:linear-gradient(135deg,var(--mag-deep),var(--mag));transition:opacity .4s}
+.mtab.on{color:var(--ivory)}.mtab.on::before{opacity:1}
+.mtab span{position:relative;z-index:1}
+.cg{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;transition:opacity .4s}
+.cg.fade{opacity:0}
+.cc{position:relative;overflow:hidden;cursor:none;background:var(--bg2);border:1px solid var(--bs)}
+.cc:nth-child(1){grid-column:span 5;min-height:530px}
+.cc:nth-child(2){grid-column:span 4;min-height:255px}
+.cc:nth-child(3){grid-column:span 3;min-height:255px}
+.cc:nth-child(4){grid-column:span 4;min-height:255px}
+.cc:nth-child(5){grid-column:span 3;min-height:255px}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:4;opacity:0;transition:opacity .35s;box-shadow:0 0 12px var(--mag)}
+.cc:hover::before{opacity:1}
+.cc:nth-child(1)::before{background:linear-gradient(90deg,var(--mag),var(--gold),var(--mag))}
+.cc:nth-child(2)::before{background:linear-gradient(90deg,#1A3A8A,#4A80EE)}
+.cc:nth-child(3)::before{background:linear-gradient(90deg,#1A5A1A,#5ACC2A)}
+.cc:nth-child(4)::before{background:linear-gradient(90deg,#7A2A08,var(--gold))}
+.cc:nth-child(5)::before{background:linear-gradient(90deg,var(--teal),#4ABBBB)}
+/* REPLACE each .cbg with background-image:url('photo.jpg') for real photos */
+.cbg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.16,1,.3,1),filter .7s}
+.cc:hover .cbg{transform:scale(1.065);filter:brightness(.78) saturate(1.1)}
+.cc:nth-child(1) .cbg{background:linear-gradient(155deg,#2A0620 0%,#7A1A5A 38%,#C03278 65%,#E8A050 100%)}
+.cc:nth-child(2) .cbg{background:linear-gradient(155deg,#060E2A 0%,#152878 38%,#2E50BB 65%,#7090E0 100%)}
+.cc:nth-child(3) .cbg{background:linear-gradient(155deg,#081A04 0%,#145218 38%,#2E8822 65%,#68C040 100%)}
+.cc:nth-child(4) .cbg{background:linear-gradient(155deg,#1A0805 0%,#6A2008 38%,#CC5812 65%,#E8A830 100%)}
+.cc:nth-child(5) .cbg{background:linear-gradient(155deg,#041616 0%,#0A5858 38%,#189898 65%,#40C8C8 100%)}
+.csm{position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.055) 50%,transparent 65%);transform:translateX(-100%);transition:transform .75s cubic-bezier(.16,1,.3,1);z-index:2}
+.cc:hover .csm{transform:translateX(100%)}
+.cov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,4,7,.93) 0%,rgba(8,4,7,.28) 48%,transparent 100%);z-index:2}
+.cpx{position:absolute;top:16px;right:16px;z-index:4;background:rgba(8,4,7,.75);backdrop-filter:blur(8px);border:1px solid var(--bg);padding:4px 11px;font-size:.58rem;letter-spacing:.08em;color:var(--gold-lt);opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s}
+.cc:hover .cpx{opacity:1;transform:none}
+.cbd{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:22px 20px}
+.ctag{font-size:.49rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:7px}
+.cnm{font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--t1);line-height:1.15}
+.cc:nth-child(1) .cnm{font-size:2rem}
+.cds{font-size:.7rem;color:var(--t2);line-height:1.6;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s,margin .35s,opacity .35s}
+.cc:hover .cds{max-height:56px;margin-top:7px;opacity:1}
+.cxp{display:inline-flex;align-items:center;gap:7px;font-size:.57rem;letter-spacing:.17em;text-transform:uppercase;color:var(--mag-soft);margin-top:12px;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.cc:hover .cxp{opacity:1;transform:none}
+
+/* =========================================
+   EXPERIENCE
+   ========================================= */
+#exp{padding:126px 0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(93,16,48,.13) 0%,transparent 70%),var(--bg1)}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:76px;align-items:center}
+.evis{position:relative}
+/* REPLACE: Add background-image:url('store.jpg') to .eim */
+.eim{aspect-ratio:4/5;background:linear-gradient(160deg,rgba(155,27,107,.45) 0%,rgba(93,16,48,.3) 50%,rgba(8,4,7,.95) 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.eim::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(155,27,107,.22) 0%,transparent 60%)}
+.emono{font-family:var(--serif);font-size:9rem;font-weight:300;font-style:italic;color:rgba(155,27,107,.14);user-select:none;position:relative;z-index:1}
+.efr{position:absolute;inset:14px;border:1px solid rgba(212,168,83,.16);pointer-events:none}
+.efr::before,.efr::after{content:'';position:absolute;width:18px;height:18px;border-color:var(--gold);border-style:solid}
+.efr::before{top:-1px;left:-1px;border-width:2px 0 0 2px}.efr::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.egw{position:absolute;width:320px;height:320px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(155,27,107,.18) 0%,transparent 70%);border-radius:50%;pointer-events:none;animation:egP 4s ease-in-out infinite}
+@keyframes egP{0%,100%{opacity:.5;transform:translate(-50%,-50%)scale(1)}50%{opacity:1;transform:translate(-50%,-50%)scale(1.12)}}
+.est{position:absolute;background:rgba(16,8,16,.9);backdrop-filter:blur(14px);border:1px solid var(--bg);padding:15px 18px;min-width:128px;text-align:center;box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.est1{top:-22px;right:-22px}.est2{bottom:-22px;left:-22px}
+.esn{font-family:var(--serif);font-size:2rem;font-weight:300;line-height:1;background:linear-gradient(135deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.esl{font-size:.48rem;letter-spacing:.17em;text-transform:uppercase;color:var(--t3);margin-top:4px}
+.efts{margin-top:38px;display:flex;flex-direction:column;gap:22px}
+.eft{display:flex;gap:15px;padding:16px;border:1px solid var(--bs);background:rgba(26,16,32,.5);transition:border-color .35s,background .35s,transform .35s}
+.eft:hover{border-color:var(--bm);background:rgba(155,27,107,.08);transform:translateX(5px)}
+.efic{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,var(--mag-deep),var(--wine));border:1px solid var(--bm);display:flex;align-items:center;justify-content:center;color:var(--mag-soft);font-size:.85rem;box-shadow:0 0 10px rgba(155,27,107,.25);margin-top:2px}
+.eft h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--t1);margin-bottom:3px}
+.eft p{font-size:.76rem;color:var(--t2);line-height:1.7}
+
+/* =========================================
+   FABRIC LIGHT LAB
+   ========================================= */
+#fab{padding:98px 0;background:linear-gradient(180deg,var(--bg1) 0%,var(--bg0) 100%)}
+#fabw{width:100%;max-width:930px;aspect-ratio:16/7;margin:46px auto 0;position:relative;overflow:hidden;cursor:none;border:1px solid var(--bg);box-shadow:0 0 55px rgba(155,27,107,.14),0 0 0 1px rgba(212,168,83,.07)}
+#fabc{width:100%;height:100%;display:block}
+.fabh{font-size:.6rem;letter-spacing:.2em;color:var(--t3);text-transform:uppercase;text-align:center;margin-top:13px}
+
+/* =========================================
+   BESTSELLERS
+   ========================================= */
+#bst{padding:108px 0 88px;background:var(--bg0)}
+#bst::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 50% at 50% 100%,rgba(155,27,107,.055) 0%,transparent 60%);pointer-events:none}
+.carow{overflow:hidden;margin-top:50px;cursor:none;position:relative}
+.carow::before,.carow::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.carow::before{left:0;background:linear-gradient(to right,var(--bg0),transparent)}
+.carow::after{right:0;background:linear-gradient(to left,var(--bg0),transparent)}
+.cart{display:flex;gap:16px;width:max-content;will-change:transform;user-select:none}
+.bsc{flex:0 0 265px;background:var(--bg2);border:1px solid var(--bs);overflow:hidden;position:relative;transition:border-color .4s,box-shadow .4s,transform .35s}
+.bsc:hover{border-color:rgba(212,168,83,.32);transform:translateY(-4px);box-shadow:0 20px 55px rgba(0,0,0,.5),0 0 18px rgba(155,27,107,.2)}
+/* REPLACE gradients with background-image:url('product.jpg') */
+.bsi{aspect-ratio:3/4;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.82rem;color:rgba(212,168,83,.28);letter-spacing:.1em;text-transform:uppercase;font-style:italic}
+.bsc:hover .bsi{transform:scale(1.05)}
+.bsi::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.055) 50%,transparent 62%);transform:translateX(-100%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.bsc:hover .bsi::after{transform:translateX(100%)}
+.bsc:nth-child(1) .bsi{background:linear-gradient(155deg,#280618,#881A58,#C8306E)}
+.bsc:nth-child(2) .bsi{background:linear-gradient(155deg,#060C28,#142070,#2844B0)}
+.bsc:nth-child(3) .bsi{background:linear-gradient(155deg,#081A04,#135018,#2A8020)}
+.bsc:nth-child(4) .bsi{background:linear-gradient(155deg,#180604,#781808,#C82E14)}
+.bsc:nth-child(5) .bsi{background:linear-gradient(155deg,#200A36,#501888,#8030C0)}
+.bsc:nth-child(6) .bsi{background:linear-gradient(155deg,#041414,#086060,#14A0A0)}
+.bsc:nth-child(7) .bsi{background:linear-gradient(155deg,#180A02,#703006,#D09018)}
+.bbdg{position:absolute;top:11px;left:11px;z-index:2;font-size:.49rem;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;font-weight:500}
+.bbm{background:var(--mag);color:var(--ivory);box-shadow:0 0 10px rgba(155,27,107,.5)}
+.bbg{background:var(--gold);color:var(--bg0)}
+.bbw{background:var(--wine);color:var(--ivory)}
+.bwsh{position:absolute;top:11px;right:11px;z-index:2;width:32px;height:32px;background:rgba(8,4,7,.72);backdrop-filter:blur(6px);border:1px solid var(--bs);display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--t3);transition:color .2s,border-color .2s}
+.bwsh:hover{color:var(--rose);border-color:var(--rose)}
+.bwsh.lk{color:var(--rose);border-color:var(--rose)}
+.binfo{padding:16px 17px 20px}
+.bnm{font-family:var(--serif);font-size:1.08rem;font-weight:400;color:var(--t1);margin-bottom:4px}
+.bpr{font-size:.76rem;color:var(--gold);letter-spacing:.04em}
+.hfl{position:fixed;pointer-events:none;z-index:1000;font-size:1.3rem;color:var(--rose);animation:hflA .9s ease-out forwards}
+@keyframes hflA{0%{opacity:1;transform:translate(-50%,-50%)scale(.6)}50%{opacity:1;transform:translate(-50%,-88px)scale(1.3)}100%{opacity:0;transform:translate(-50%,-138px)scale(.9)}}
+.cctls{display:flex;gap:10px;margin-top:26px;padding:0 clamp(20px,5vw,80px)}
+.ccbtn{width:46px;height:46px;border:1px solid var(--bg);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;transition:background .2s,box-shadow .2s}
+.ccbtn:hover{background:rgba(212,168,83,.09);box-shadow:0 0 14px rgba(212,168,83,.18)}
+
+/* =========================================
+   STORY
+   ========================================= */
+#stry{padding:136px 0;background:radial-gradient(ellipse 65% 55% at 82% 50%,rgba(155,27,107,.07) 0%,transparent 60%),radial-gradient(ellipse 45% 45% at 8% 50%,rgba(212,168,83,.05) 0%,transparent 60%),linear-gradient(180deg,var(--bg0) 0%,rgba(20,10,18,.92) 100%)}
+.sgg{display:grid;grid-template-columns:1.1fr 1fr;gap:86px;align-items:center}
+/* REPLACE: Add background-image:url('brand.jpg') to .simg */
+.simg{aspect-ratio:4/5;background:linear-gradient(160deg,rgba(155,27,107,.48) 0%,rgba(93,16,48,.32) 50%,rgba(8,4,7,.97) 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.swmk{font-family:var(--serif);font-size:clamp(3.5rem,7vw,6rem);font-weight:300;font-style:italic;color:rgba(155,27,107,.14);text-align:center;line-height:1.2;user-select:none;position:relative;z-index:1}
+.sdts{position:absolute;top:22px;right:22px;display:grid;grid-template-columns:repeat(5,7px);gap:5px;opacity:.28}
+.sdts span{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.sftag{position:absolute;bottom:-22px;right:-22px;background:linear-gradient(135deg,var(--mag-deep),var(--wine));border:1px solid rgba(212,168,83,.22);padding:20px 24px;max-width:215px;box-shadow:0 16px 38px rgba(0,0,0,.5)}
+.sftq{font-family:var(--serif);font-size:.96rem;font-style:italic;color:var(--t1);line-height:1.6}
+.sfta{font-size:.53rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);margin-top:7px}
+.ssts{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:50px}
+.ssb{background:linear-gradient(135deg,rgba(26,16,32,.92),rgba(34,20,44,.92));border:1px solid var(--bs);padding:26px 22px;transition:border-color .35s,box-shadow .35s}
+.ssb:hover{border-color:var(--bm);box-shadow:0 0 18px rgba(155,27,107,.15)}
+.ssn{font-family:var(--serif);font-size:clamp(2rem,3.8vw,3rem);font-weight:300;line-height:1;background:linear-gradient(135deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ssl{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-top:5px}
+
+/* =========================================
+   TESTIMONIALS
+   ========================================= */
+#tst{padding:118px 0;background:radial-gradient(ellipse 50% 55% at 28% 42%,rgba(155,27,107,.055) 0%,transparent 60%),var(--bg1);position:relative}
+#bkcv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.55}
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:18px;margin-top:54px}
+.tc{background:linear-gradient(155deg,rgba(26,16,32,.92),rgba(20,11,18,.92));border:1px solid var(--bs);padding:34px 28px;position:relative;overflow:hidden;transition:border-color .4s,transform .4s,box-shadow .4s}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .4s}
+.tc:hover::before{opacity:1;box-shadow:0 0 10px var(--mag)}
+.tc:hover{border-color:rgba(155,27,107,.32);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.4),0 0 18px rgba(155,27,107,.1)}
+.tc:nth-child(1)::before{background:linear-gradient(90deg,var(--mag),var(--gold))}
+.tc:nth-child(2)::before{background:linear-gradient(90deg,var(--wine),var(--mag))}
+.tc:nth-child(3)::before{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.tc:nth-child(4)::before{background:linear-gradient(90deg,var(--saffron),var(--mag))}
+.tc:nth-child(5)::before{background:linear-gradient(90deg,var(--wine),var(--gold))}
+.tqm{font-family:var(--serif);font-size:5rem;line-height:.72;background:linear-gradient(135deg,rgba(155,27,107,.15),rgba(212,168,83,.08));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:absolute;top:18px;left:20px;font-style:italic}
+.tstr{margin-bottom:13px}
+.tstr span{display:inline-block;font-size:.72rem;color:var(--gold);text-shadow:0 0 7px rgba(212,168,83,.55)}
+.ttxt{font-family:var(--serif);font-size:.98rem;font-style:italic;line-height:1.82;color:var(--t1);position:relative;z-index:1;margin-bottom:22px}
+.tau{display:flex;align-items:center;gap:13px}
+.tav{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.05rem;color:var(--ivory)}
+.tv1{background:linear-gradient(135deg,var(--mag-deep),var(--mag))}
+.tv2{background:linear-gradient(135deg,var(--wine),var(--mag-deep))}
+.tv3{background:linear-gradient(135deg,var(--teal),var(--wine))}
+.tv4{background:linear-gradient(135deg,var(--saffron),var(--wine))}
+.tv5{background:linear-gradient(135deg,var(--wine),var(--mag-deep))}
+.tnm{font-size:.8rem;font-weight:500;color:var(--t1)}
+.tlc{font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;color:var(--gold);margin-top:1px}
+
+/* =========================================
+   VISIT
+   ========================================= */
+#vis{padding:118px 0;background:radial-gradient(ellipse 55% 55% at 72% 50%,rgba(212,168,83,.048) 0%,transparent 60%),var(--bg0)}
+.vg{display:grid;grid-template-columns:1.2fr 1fr;gap:76px;align-items:start}
+.vds{display:flex;flex-direction:column;gap:30px}
+.vr{display:flex;gap:16px;align-items:flex-start}
+.vic{width:42px;height:42px;flex-shrink:0;background:linear-gradient(135deg,rgba(155,27,107,.28),rgba(93,16,48,.38));border:1px solid var(--bm);display:flex;align-items:center;justify-content:center;color:var(--mag-soft);font-size:.95rem;margin-top:2px;box-shadow:0 0 10px rgba(155,27,107,.18)}
+.vr h4{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.vr p,.vr a{font-size:.84rem;color:var(--t2);line-height:1.75;display:block}
+.vr a{transition:color .2s}.vr a:hover{color:var(--gold-lt)}
+.wabtn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;padding:12px 24px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-top:11px;box-shadow:0 0 18px rgba(37,211,102,.22);transition:box-shadow .2s,transform .2s}
+.wabtn:hover{box-shadow:0 0 28px rgba(37,211,102,.4);transform:translateY(-2px)}
+.mpbx{background:linear-gradient(155deg,rgba(26,16,32,.92),rgba(16,9,14,.92));border:1px solid var(--bg);padding:46px 34px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;position:relative;overflow:hidden;box-shadow:0 0 38px rgba(155,27,107,.07)}
+.mpbx::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(212,168,83,.022) 0,rgba(212,168,83,.022) 1px,transparent 0,transparent 26px),repeating-linear-gradient(90deg,rgba(212,168,83,.022) 0,rgba(212,168,83,.022) 1px,transparent 0,transparent 26px);pointer-events:none}
+.mpin{width:18px;height:18px;background:var(--mag);border-radius:50%;position:relative;box-shadow:0 0 14px var(--mag)}
+.mpin::before{content:'';position:absolute;inset:-7px;border:2px solid var(--mag);border-radius:50%;animation:mpP 2s ease-out infinite}
+.mpin::after{content:'';position:absolute;inset:-14px;border:1px solid rgba(155,27,107,.35);border-radius:50%;animation:mpP 2s .6s ease-out infinite}
+@keyframes mpP{0%{opacity:.8;transform:scale(.8)}100%{opacity:0;transform:scale(2.3)}}
+.mpad{font-size:.8rem;color:var(--t2);line-height:1.85}
+.mphrs{font-size:.7rem;color:var(--t3);font-style:italic}
+.mpgm{font-size:.58rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--bg);padding-bottom:2px;transition:border-color .2s}
+.mpgm:hover{border-color:var(--gold)}
+
+/* =========================================
+   COMMUNITY
+   ========================================= */
+#comm{padding:116px 0;background:linear-gradient(135deg,rgba(155,27,107,.16) 0%,rgba(8,4,7,.78) 50%,rgba(93,16,48,.13) 100%);border-top:1px solid var(--bm);border-bottom:1px solid var(--bm);overflow:hidden;position:relative}
+#comm::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 50% 50%,rgba(155,27,107,.1) 0%,transparent 70%);pointer-events:none}
+.cmnd{position:absolute;right:-180px;top:50%;transform:translateY(-50%);width:560px;height:560px;opacity:.042;animation:cmR 55s linear infinite}
+.cmnd svg{width:100%;height:100%}
+@keyframes cmR{to{transform:translateY(-50%)rotate(360deg)}}
+.cmin{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.cmin .sdv{margin:20px auto 38px}
+.cmf{display:flex;max-width:470px;margin:30px auto 0}
+.cmi{flex:1;background:rgba(253,246,236,.05);border:1px solid var(--bg);border-right:none;padding:13px 18px;font-family:var(--sans);font-size:.8rem;color:var(--t1);outline:none;transition:background .2s}
+.cmi::placeholder{color:var(--t3)}.cmi:focus{background:rgba(253,246,236,.09)}
+.cmwa{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(37,211,102,.38);color:rgba(37,211,102,.88);padding:13px 26px;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;margin-top:17px;transition:all .2s}
+.cmwa:hover{background:rgba(37,211,102,.09);border-color:rgba(37,211,102,.7);box-shadow:0 0 18px rgba(37,211,102,.18)}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer{background:var(--bg0);border-top:1px solid var(--bs);padding:76px 0 38px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:56px}
+.fbn{font-family:var(--serif);font-size:1.45rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold-lt),var(--mag-soft));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+.fbt{font-size:.75rem;font-style:italic;font-family:var(--serif);color:var(--t3);line-height:1.7;max-width:260px;margin-bottom:22px}
+.fsoc{display:flex;gap:9px}
+.fsi{width:34px;height:34px;border:1px solid var(--bs);display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:.82rem;transition:all .2s}
+.fsi:hover{border-color:var(--mag);color:var(--mag-soft);box-shadow:0 0 9px rgba(155,27,107,.28)}
+.fc h5{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:400}
+.fc ul{list-style:none}.fc ul li{margin-bottom:9px}.fc ul li a{font-size:.78rem;color:var(--t3);transition:color .2s}.fc ul li a:hover{color:var(--t1)}
+.fbot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:26px;border-top:1px solid var(--bs)}
+.fcp,.flv{font-size:.6rem;color:var(--t3);letter-spacing:.04em}
+.flv span{color:var(--rose)}
+
+/* =========================================
+   MODAL
+   ========================================= */
+#mdl{position:fixed;inset:0;z-index:500;background:rgba(8,4,7,.87);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+#mdl.on{opacity:1;pointer-events:all}
+.mbox{background:linear-gradient(155deg,rgba(26,16,32,.97),rgba(16,9,14,.97));border:1px solid var(--bm);max-width:510px;width:92%;padding:42px;position:relative;box-shadow:0 0 70px rgba(155,27,107,.28);transform:scale(.9) translateY(18px);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+#mdl.on .mbox{transform:none}
+.mtop{height:3px;position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,var(--mag),var(--gold),var(--mag))}
+.mxbt{position:absolute;top:14px;right:18px;font-family:var(--serif);font-size:1.5rem;color:var(--t3);transition:color .2s}
+.mxbt:hover{color:var(--t1)}
+.mcat{font-size:.53rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mag-soft);margin-bottom:10px;display:block}
+.mtit{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:var(--t1);margin-bottom:9px}
+.mprc{font-size:.98rem;color:var(--gold);letter-spacing:.05em;margin-bottom:17px}
+.mdsc{font-size:.8rem;color:var(--t2);line-height:1.88;margin-bottom:28px}
+.mbtns{display:flex;gap:11px}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media(max-width:1200px){
+  .cg{grid-template-columns:repeat(6,1fr)}
+  .cc:nth-child(1){grid-column:span 6;min-height:340px}
+  .cc:nth-child(2),.cc:nth-child(3){grid-column:span 3;min-height:240px}
+  .cc:nth-child(4),.cc:nth-child(5){grid-column:span 3;min-height:240px}
+  .eg,.sgg,.vg,.fg{grid-template-columns:1fr 1fr;gap:46px}
+}
+@media(max-width:900px){
+  #nav{padding:16px 22px}#nav.s{padding:11px 22px}
+  .nl,.nwa{display:none}.nbg{display:flex}
+  .mbx{right:22px}
+  .cg{grid-template-columns:repeat(2,1fr)}
+  .cc:nth-child(n){grid-column:span 1;min-height:240px}
+  .eg,.sgg,.vg{grid-template-columns:1fr;gap:50px}
+  .est1{top:-14px;right:-8px}.est2{bottom:-14px;left:-8px}
+  .sftag{position:static;margin-top:20px}
+  .hbdg{display:none}
+  .fg{grid-template-columns:1fr 1fr;gap:34px}
+  .cmf{flex-direction:column}
+  .cmi{border-right:1px solid var(--bg);border-bottom:none}
+}
+@media(max-width:540px){
+  .cg{grid-template-columns:1fr}
+  .hctas{flex-direction:column}
+  .fg{grid-template-columns:1fr}
+  .sdts{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+
+<!-- ══ CSS-ONLY LOADER — no JS needed, cannot get stuck ══ -->
+<div id="loader">
+  <div class="ln">SAKHI</div>
+  <div class="ls">Women's Wear · Borivali East · Since 2012</div>
+  <div class="lb"><div class="lf"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="cd"></div>
+<div id="cr"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="prog"></div>
+
+<!-- ══ ALL CONTENT fades in after loader ══ -->
+<div id="wrap">
+
+<!-- MOBILE MENU -->
+<div id="mob">
+  <button class="mbx" id="mbx">✕</button>
+  <a href="#coll">Collections</a>
+  <a href="#exp">Experience</a>
+  <a href="#bst">Best Sellers</a>
+  <a href="#stry">Our Story</a>
+  <a href="#vis">Visit Us</a>
+  <a href="https://wa.me/919820192848" target="_blank" style="color:var(--gold-lt)">WhatsApp</a>
+</div>
+
+<!-- NAV -->
+<header>
+  <nav id="nav">
+    <a href="#hero" class="nb">
+      <span class="nb-n">Sakhi</span>
+      <span class="nb-s">Borivali East · Women-Owned · Since 2012</span>
+    </a>
+    <ul class="nl">
+      <li><a href="#coll">Collections</a></li>
+      <li><a href="#exp">Experience</a></li>
+      <li><a href="#bst">Best Sellers</a></li>
+      <li><a href="#stry">Our Story</a></li>
+      <li><a href="#tst">Reviews</a></li>
+      <li><a href="#vis">Visit Us</a></li>
+    </ul>
+    <a href="https://wa.me/919820192848" class="nwa" target="_blank" rel="noopener">WhatsApp Us</a>
+    <button class="nbg" id="nbg"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <canvas id="hcv"></canvas>
+  <canvas id="pcv"></canvas>
+  <div class="hph"></div>
+  <div class="fo fo1"></div><div class="fo fo2"></div><div class="fo fo3"></div><div class="fo fo4"></div>
+  <div class="hol"></div>
+  <div class="hc">
+    <div class="hey">Women-Owned Boutique · Borivali East · Mumbai</div>
+    <h1 class="hh1"><em>Timeless Indian</em>Elegance.</h1>
+    <p class="hsub">Luxury ethnic wear crafted for modern Mumbai women — from everyday chic to bridal dreams. Trusted across the city for over 12 years.</p>
+    <div class="hctas">
+      <a href="#coll" class="bg-btn">Explore Collections</a>
+      <a href="#vis"  class="go-btn">Visit Our Store</a>
+    </div>
+  </div>
+  <div class="hscr"><span class="hscrt">Scroll</span><div class="hscrl"></div></div>
+  <div class="hbdg"><div class="hbn">10K+</div><div class="hbl">Happy Clients</div></div>
+</section>
+
+<!-- TICKER -->
+<div class="tkw" aria-hidden="true">
+  <div class="tkt">
+    <span class="tki">Sarees</span><span class="tki">Lehengas</span><span class="tki">Kurtis &amp; Sets</span>
+    <span class="tki">Bridal &amp; Reception</span><span class="tki">Everyday Chic</span><span class="tki">Festive Wear</span>
+    <span class="tki">Premium Fabrics</span><span class="tki">Borivali East</span><span class="tki">Women-Owned</span><span class="tki">Since 2012</span>
+    <span class="tki">Sarees</span><span class="tki">Lehengas</span><span class="tki">Kurtis &amp; Sets</span>
+    <span class="tki">Bridal &amp; Reception</span><span class="tki">Everyday Chic</span><span class="tki">Festive Wear</span>
+    <span class="tki">Premium Fabrics</span><span class="tki">Borivali East</span><span class="tki">Women-Owned</span><span class="tki">Since 2012</span>
+  </div>
+</div>
+
+<!-- ═══ COLLECTIONS ═══ -->
+<section id="coll">
+  <div class="inn">
+    <div class="mrow rv">
+      <div>
+        <span class="slbl">Curated for You</span>
+        <h2 class="stit">The <em>Sakhi</em> Edit</h2>
+      </div>
+      <div class="mtabs">
+        <button class="mtab on" data-mood="festive"><span>✦ Festive</span></button>
+        <button class="mtab" data-mood="everyday"><span>◇ Everyday</span></button>
+      </div>
+    </div>
+    <div class="sdv rv d1"></div>
+    <div class="cg" id="cg">
+      <div class="cc rv d1" data-name="Sarees" data-cat="Heritage &amp; Modern" data-price="₹2,500 onwards" data-desc="Handpicked Banarasi, chanderi, georgette and silk sarees — from understated daily elegance to breathtaking bridal splendour."><div class="cbg"></div><div class="csm"></div><div class="cov"></div><div class="cpx">₹2,500+</div><div class="cbd"><span class="ctag">Heritage &amp; Modern</span><h3 class="cnm">Sarees</h3><p class="cds">Draped in stories, woven in tradition.</p><div class="cxp">Explore →</div></div></div>
+      <div class="cc rv d2" data-name="Lehengas" data-cat="Bridal &amp; Festive" data-price="₹8,000 onwards" data-desc="Voluminous, hand-embroidered lehengas for weddings, receptions and sangeet nights — crafted to make every entrance unforgettable."><div class="cbg"></div><div class="csm"></div><div class="cov"></div><div class="cpx">₹8,000+</div><div class="cbd"><span class="ctag">Bridal &amp; Festive</span><h3 class="cnm">Lehengas</h3><p class="cds">Embroidered for every grand occasion.</p><div class="cxp">Explore →</div></div></div>
+      <div class="cc rv d3" data-name="Kurtis &amp; Sets" data-cat="Daily Luxe" data-price="₹1,200 onwards" data-desc="Chic, versatile kurta sets and co-ords that move with you — from office hours to family gatherings and festive afternoons."><div class="cbg"></div><div class="csm"></div><div class="cov"></div><div class="cpx">₹1,200+</div><div class="cbd"><span class="ctag">Daily Luxe</span><h3 class="cnm">Kurtis &amp; Sets</h3><p class="cds">Refined silhouettes for modern Mumbai women.</p><div class="cxp">Explore →</div></div></div>
+      <div class="cc rv d4" data-name="Bridal &amp; Reception" data-cat="The Wedding Edit" data-price="₹15,000 onwards" data-desc="Your most important day, dressed by Sakhi — bespoke bridal sarees, lehengas and reception outfits with couture-level attention to detail."><div class="cbg"></div><div class="csm"></div><div class="cov"></div><div class="cpx">₹15,000+</div><div class="cbd"><span class="ctag">The Wedding Edit</span><h3 class="cnm">Bridal &amp; Reception</h3><p class="cds">Where your most beautiful chapter begins.</p><div class="cxp">Explore →</div></div></div>
+      <div class="cc rv d5" data-name="Everyday Chic" data-cat="Every Day, Every You" data-price="₹900 onwards" data-desc="Thoughtfully crafted, comfortable yet elevated everyday wear — because style should never be saved only for special occasions."><div class="cbg"></div><div class="csm"></div><div class="cov"></div><div class="cpx">₹900+</div><div class="cbd"><span class="ctag">Every Day, Every You</span><h3 class="cnm">Everyday Chic</h3><p class="cds">Beautiful dressing, every single day.</p><div class="cxp">Explore →</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="orn"><svg viewBox="0 0 300 26" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1"><stop offset="0%" stop-color="#9B1B6B" stop-opacity=".6"/><stop offset="100%" stop-color="#D4A853" stop-opacity=".5"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D4A853" stop-opacity=".5"/><stop offset="100%" stop-color="#9B1B6B" stop-opacity=".6"/></linearGradient></defs><line x1="0" y1="13" x2="108" y2="13" stroke="url(#g1)" stroke-width=".6"/><path d="M128 13 C128 7 138 3 138 13 C138 3 148 7 148 13" stroke="#D4A853" stroke-width=".9" fill="none"/><circle cx="138" cy="13" r="3.2" fill="none" stroke="#D4A853" stroke-width=".8"/><circle cx="116" cy="13" r="1.6" fill="#D4A853" fill-opacity=".5"/><circle cx="160" cy="13" r="1.6" fill="#D4A853" fill-opacity=".5"/><line x1="168" y1="13" x2="300" y2="13" stroke="url(#g2)" stroke-width=".6"/></svg></div>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="exp">
+  <div class="inn">
+    <div class="eg">
+      <div class="evis rv">
+        <div class="egw"></div>
+        <div class="eim"><span class="emono">S</span></div>
+        <div class="efr"></div>
+        <div class="est est1"><div class="esn">10K+</div><div class="esl">Happy Clients</div></div>
+        <div class="est est2"><div class="esn">500+</div><div class="esl">Styles in Stock</div></div>
+      </div>
+      <div class="rv d2">
+        <span class="slbl">The Sakhi Way</span>
+        <h2 class="stit">Feel Every <em>Drape.</em></h2>
+        <div class="sdv"></div>
+        <p style="font-size:.86rem;color:var(--t2);line-height:1.95;max-width:455px">Visit us in Borivali East — minutes from the station and Shatabdi Hospital. Feel every fabric, test every fit, receive honest personalised styling guidance before you decide. This is the Sakhi difference.</p>
+        <div class="efts">
+          <div class="eft"><div class="efic">✦</div><div><h4>Expert Styling Advice</h4><p>Over a decade of dressing Mumbai's women — for every occasion, every size, every story.</p></div></div>
+          <div class="eft"><div class="efic">◈</div><div><h4>Premium Fabric Selection</h4><p>Banarasi silks, chanderi weaves, georgettes and hand-embroidered pieces, curated each season.</p></div></div>
+          <div class="eft"><div class="efic">◇</div><div><h4>Bespoke Bridal Consultation</h4><p>Private bridal sessions by appointment — walk in for a dream, walk out ready for life's most beautiful chapter.</p></div></div>
+        </div>
+        <div style="margin-top:34px"><a href="https://wa.me/919820192848?text=Hi%20Sakhi!%20I'd%20like%20to%20book%20a%20styling%20visit." class="bg-btn" target="_blank" rel="noopener" style="cursor:pointer">Book a Styling Visit</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FABRIC LAB ═══ -->
+<section id="fab">
+  <div class="inn">
+    <div class="rv" style="text-align:center">
+      <span class="slbl">Sensory Experience</span>
+      <h2 class="stit">The <em>Fabric</em> of Sakhi</h2>
+      <div class="sdv" style="margin:18px auto 0"></div>
+    </div>
+    <div id="fabw" class="rv d2"><canvas id="fabc"></canvas></div>
+    <p class="fabh rv d3">Move your cursor across the canvas to see how light plays on our fabrics</p>
+  </div>
+</section>
+
+<!-- ═══ BESTSELLERS ═══ -->
+<section id="bst">
+  <div class="inn"><div class="rv"><span class="slbl">Most Loved</span><h2 class="stit">Borivali's <em>Favourites</em></h2><div class="sdv"></div></div></div>
+  <div style="padding-left:clamp(20px,5vw,80px)">
+    <div class="carow" id="carow">
+      <div class="cart" id="cart">
+        <div class="bsc"><div class="bsi">Silk Banarasi</div><span class="bbdg bbm">Borivali Fav</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Royal Banarasi Saree</div><div class="bpr">₹4,500 onwards</div></div></div>
+        <div class="bsc"><div class="bsi">Mirror Work</div><span class="bbdg bbg">Festive Hit</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Embroidered Lehenga</div><div class="bpr">₹11,500 onwards</div></div></div>
+        <div class="bsc"><div class="bsi">Chanderi Set</div><span class="bbdg bbw">Wedding Edit</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Chanderi Kurta Set</div><div class="bpr">₹2,800 onwards</div></div></div>
+        <div class="bsc"><div class="bsi">Bridal Red</div><span class="bbdg bbm">Bridal Pick</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Red Bridal Lehenga</div><div class="bpr">₹22,000 onwards</div></div></div>
+        <div class="bsc"><div class="bsi">Silk Georgette</div><span class="bbdg bbg">Everyday Luxe</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Silk Georgette Saree</div><div class="bpr">₹3,200 onwards</div></div></div>
+        <div class="bsc"><div class="bsi">Anarkali Set</div><span class="bbdg bbw">New Arrival</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Anarkali Co-ord Set</div><div class="bpr">₹3,800 onwards</div></div></div>
+        <div class="bsc"><div class="bsi">Reception Blue</div><span class="bbdg bbm">Top Seller</span><button class="bwsh">♡</button><div class="binfo"><div class="bnm">Blue Reception Gown</div><div class="bpr">₹9,500 onwards</div></div></div>
+      </div>
+    </div>
+    <div class="cctls"><button class="ccbtn" id="cprev">←</button><button class="ccbtn" id="cnext">→</button></div>
+  </div>
+</section>
+
+<!-- ═══ STORY ═══ -->
+<section id="stry">
+  <div class="inn">
+    <div class="sgg">
+      <div class="rv">
+        <div class="simg"><div class="swmk">Women's<br>Wear<br>Since '12</div><div class="sdts"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+        <div class="sftag"><p class="sftq">"Every woman deserves to feel like the most beautiful version of herself."</p><span class="sfta">— The Sakhi Promise</span></div>
+        <div class="ssts">
+          <div class="ssb"><div class="ssn" data-to="12">0</div><div class="ssl">Years in Borivali East</div></div>
+          <div class="ssb"><div class="ssn" data-to="10000">0</div><div class="ssl">Happy Customers</div></div>
+          <div class="ssb"><div class="ssn" data-to="500">0</div><div class="ssl">Styles in Stock</div></div>
+          <div class="ssb"><div class="ssn">#1</div><div class="ssl">In Borivali East</div></div>
+        </div>
+      </div>
+      <div class="rv d2">
+        <span class="slbl">Our Story</span>
+        <h2 class="stit">12+ Years of<br><em>Dressing Dreams</em></h2>
+        <div class="sdv"></div>
+        <p style="font-size:.86rem;color:var(--t2);line-height:1.95;margin-bottom:17px">SAKHI WOMEN'S WEAR is a proudly women-owned boutique in the heart of Borivali East — bringing runway-inspired Indian silhouettes, premium fabrics, and inclusive fits together under one welcoming roof.</p>
+        <p style="font-size:.86rem;color:var(--t2);line-height:1.95;margin-bottom:17px">For over 12 years, we have been the trusted styling destination for Mumbai's women — for weddings, festivals, Diwali celebrations, office days, and every beautiful moment in between.</p>
+        <p style="font-size:.86rem;color:var(--t2);line-height:1.95">We believe elegance is not a privilege — it is a birthright. And we built SAKHI to make sure every woman who walks through our doors walks out feeling exactly that.</p>
+        <div style="margin-top:38px"><a href="https://wa.me/919820192848" class="bg-btn" target="_blank" rel="noopener" style="cursor:pointer">Connect on WhatsApp</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="orn"><svg viewBox="0 0 300 26" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g3"><stop offset="0%" stop-color="#9B1B6B" stop-opacity=".6"/><stop offset="100%" stop-color="#D4A853" stop-opacity=".5"/></linearGradient><linearGradient id="g4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D4A853" stop-opacity=".5"/><stop offset="100%" stop-color="#9B1B6B" stop-opacity=".6"/></linearGradient></defs><line x1="0" y1="13" x2="108" y2="13" stroke="url(#g3)" stroke-width=".6"/><path d="M128 13 C128 7 138 3 138 13 C138 3 148 7 148 13" stroke="#D4A853" stroke-width=".9" fill="none"/><circle cx="138" cy="13" r="3.2" fill="none" stroke="#D4A853" stroke-width=".8"/><circle cx="116" cy="13" r="1.6" fill="#D4A853" fill-opacity=".5"/><circle cx="160" cy="13" r="1.6" fill="#D4A853" fill-opacity=".5"/><line x1="168" y1="13" x2="300" y2="13" stroke="url(#g4)" stroke-width=".6"/></svg></div>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="tst">
+  <canvas id="bkcv"></canvas>
+  <div class="inn" style="position:relative;z-index:1">
+    <div class="rv"><span class="slbl">Customer Love</span><h2 class="stit">What Mumbai<br><em>Women Say</em></h2><div class="sdv"></div></div>
+    <div class="tg">
+      <div class="tc rv d1"><div class="tqm">"</div><div class="tstr"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="ttxt">I wore a Sakhi saree to my cousin's reception and received so many compliments all evening. The drape, quality, colour — everything was absolutely perfect.</p><div class="tau"><div class="tav tv1">P</div><div><div class="tnm">Priya Desai</div><div class="tlc">Borivali East</div></div></div></div>
+      <div class="tc rv d2"><div class="tqm">"</div><div class="tstr"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="ttxt">Got my bridal lehenga from Sakhi and I could not have asked for anything more. The embroidery was stunning and it fit like it was made just for me. Best boutique in Borivali!</p><div class="tau"><div class="tav tv2">S</div><div><div class="tnm">Sneha Mehta</div><div class="tlc">Dahisar, Mumbai</div></div></div></div>
+      <div class="tc rv d3"><div class="tqm">"</div><div class="tstr"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="ttxt">I've been shopping at Sakhi since 2016 and they never disappoint. The kurtis are chic without being OTT — perfect for office and casual outings. Pricing is so honest too.</p><div class="tau"><div class="tav tv3">N</div><div><div class="tnm">Neha Patil</div><div class="tlc">Kandivali, Mumbai</div></div></div></div>
+      <div class="tc rv d4"><div class="tqm">"</div><div class="tstr"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="ttxt">Came in for Diwali and left with three outfits — that's the Sakhi magic! The staff helped me style everything. My family was absolutely in awe this Diwali.</p><div class="tau"><div class="tav tv4">R</div><div><div class="tnm">Ritu Joshi</div><div class="tlc">Borivali East</div></div></div></div>
+      <div class="tc rv d5"><div class="tqm">"</div><div class="tstr"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="ttxt">The Banarasi silk I bought became my sister's favourite wedding outfit. Quality is on another level. Sakhi is simply in a different league from every other boutique.</p><div class="tau"><div class="tav tv5">A</div><div><div class="tnm">Anjali Sharma</div><div class="tlc">Goregaon, Mumbai</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISIT ═══ -->
+<section id="vis">
+  <div class="inn">
+    <div class="rv"><span class="slbl">Come See Us</span><h2 class="stit">Visit <em>Sakhi</em></h2><div class="sdv"></div></div>
+    <div class="vg">
+      <div class="vds rv">
+        <div class="vr"><div class="vic">◈</div><div><h4>Store Address</h4><p>Shop No. 5, Swayambhu Gaodevi Building,<br>Dattpada Road, near Shatabdi Hospital,<br>Chinchpada, Borivali East,<br>Mumbai, Maharashtra 400066</p></div></div>
+        <div class="vr"><div class="vic">✆</div><div><h4>Call &amp; WhatsApp</h4><a href="tel:+919820192848">+91 98201 92848</a>
+          <a href="https://wa.me/919820192848" target="_blank" rel="noopener" class="wabtn" style="cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>Chat on WhatsApp</a>
+        </div></div>
+        <div class="vr"><div class="vic">✉</div><div><h4>Email</h4><a href="mailto:info@sakhiwomenswear.me">info@sakhiwomenswear.me</a><a href="mailto:urvijoshi2014@gmail.com" style="margin-top:3px">urvijoshi2014@gmail.com</a></div></div>
+        <div class="vr"><div class="vic">◷</div><div><h4>Store Hours</h4><p>Mon – Sat: 10:30 AM – 8:30 PM<br>Sunday: 11:00 AM – 8:00 PM</p></div></div>
+      </div>
+      <div class="mpbx rv d2">
+        <div class="mpin"></div>
+        <p class="mpad">Shop No. 5, Swayambhu Gaodevi Building<br>Dattpada Road, Chinchpada<br>Borivali East, Mumbai 400066<br><br><em style="font-family:var(--serif);color:var(--t3)">Near Shatabdi Hospital · Minutes from Borivali Station</em></p>
+        <span class="mphrs">Open 7 days a week</span>
+        <a href="https://maps.google.com/?q=Shop+No+5+Swayambhu+Gaodevi+Building+Dattpada+Road+Borivali+East+Mumbai" target="_blank" rel="noopener" class="mpgm" style="cursor:pointer">Open in Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMMUNITY ═══ -->
+<section id="comm">
+  <div class="cmnd"><svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="200" cy="200" r="190" stroke="#D4A853" stroke-width=".5"/><circle cx="200" cy="200" r="150" stroke="#9B1B6B" stroke-width=".5"/><circle cx="200" cy="200" r="110" stroke="#D4A853" stroke-width=".5"/><circle cx="200" cy="200" r="70" stroke="#9B1B6B" stroke-width=".5"/><circle cx="200" cy="200" r="30" stroke="#D4A853" stroke-width=".5"/><path d="M200 10 L200 390 M10 200 L390 200 M57 57 L343 343 M343 57 L57 343" stroke="#9B1B6B" stroke-width=".3"/><path d="M200 50 L218 200 L200 350 L182 200 Z M50 200 L200 218 L350 200 L200 182 Z" stroke="#D4A853" stroke-width=".4" fill="none"/></svg></div>
+  <div class="inn">
+    <div class="cmin rv">
+      <span class="slbl">Stay Connected</span>
+      <h2 class="stit">Join the <em>Sakhi Circle</em></h2>
+      <div class="sdv"></div>
+      <p style="font-size:.86rem;color:var(--t2);line-height:1.9">New drops, exclusive styling tips, Borivali-only offers, and first access to festival collections — straight to your inbox and WhatsApp.</p>
+      <div class="cmf">
+        <input class="cmi" type="email" placeholder="Your email address" aria-label="Email">
+        <button class="bg-btn" id="subbtn" onclick="doSub(event)" style="white-space:nowrap;font-size:.63rem">Subscribe</button>
+      </div>
+      <br>
+      <a href="https://wa.me/919820192848?text=Hi!%20I'd%20like%20to%20join%20the%20Sakhi%20WhatsApp%20community." target="_blank" rel="noopener" class="cmwa" style="cursor:pointer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+        Join Sakhi's WhatsApp Community
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inn">
+    <div class="fg">
+      <div><div class="fbn">Sakhi Women's Wear</div><p class="fbt">Timeless Indian elegance for modern Mumbai women. Women-owned. Borivali-rooted. Always.</p><div class="fsoc"><a href="#" class="fsi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="https://wa.me/919820192848" target="_blank" class="fsi"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg></a><a href="mailto:info@sakhiwomenswear.me" class="fsi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/></svg></a></div></div>
+      <div class="fc"><h5>Collections</h5><ul><li><a href="#coll">Sarees</a></li><li><a href="#coll">Lehengas</a></li><li><a href="#coll">Kurtis &amp; Sets</a></li><li><a href="#coll">Bridal &amp; Reception</a></li><li><a href="#coll">Everyday Chic</a></li></ul></div>
+      <div class="fc"><h5>Discover</h5><ul><li><a href="#stry">Our Story</a></li><li><a href="#exp">Experience</a></li><li><a href="#bst">Best Sellers</a></li><li><a href="#tst">Reviews</a></li><li><a href="#comm">Sakhi Circle</a></li></ul></div>
+      <div class="fc"><h5>Contact</h5><ul><li><a href="tel:+919820192848">+91 98201 92848</a></li><li><a href="mailto:info@sakhiwomenswear.me">info@sakhiwomenswear.me</a></li><li><a href="https://wa.me/919820192848" target="_blank">WhatsApp Us</a></li><li><a href="#vis">Store Address</a></li><li><a href="https://maps.google.com/?q=Borivali+East+Mumbai" target="_blank">Get Directions</a></li></ul></div>
+    </div>
+    <div class="fbot"><span class="fcp">© 2024 Sakhi Women's Wear, Borivali East, Mumbai. All rights reserved.</span><span class="flv">Crafted with <span>♥</span> in Mumbai</span></div>
+  </div>
+</footer>
+
+</div><!-- end #wrap -->
+
+<!-- MODAL -->
+<div id="mdl"><div class="mbox"><div class="mtop"></div><button class="mxbt" id="mxbt">✕</button><span class="mcat" id="mcat"></span><h3 class="mtit" id="mtit"></h3><div class="mprc" id="mprc"></div><p class="mdsc" id="mdsc"></p><div class="mbtns"><a href="https://wa.me/919820192848" target="_blank" rel="noopener" class="bg-btn" style="cursor:pointer">Enquire on WhatsApp</a><button class="go-btn" onclick="closeMdl()">Close</button></div></div></div>
+
+<script>
+/* ══ CURSOR ══ */
+var cd=document.getElementById('cd'),cr=document.getElementById('cr');
+var mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.cc,.bsc,.tc,.eft').forEach(function(el){el.addEventListener('mouseenter',function(){document.body.classList.add('hov');});el.addEventListener('mouseleave',function(){document.body.classList.remove('hov');});});
+
+/* ══ SCROLL PROGRESS ══ */
+window.addEventListener('scroll',function(){var st=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('prog').style.width=(st/dh*100)+'%';},{passive:true});
+
+/* ══ NAV SCROLL ══ */
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('s',window.scrollY>60);},{passive:true});
+
+/* ══ MOBILE MENU ══ */
+document.getElementById('nbg').addEventListener('click',function(){document.getElementById('mob').classList.add('on');});
+document.getElementById('mbx').addEventListener('click',function(){document.getElementById('mob').classList.remove('on');});
+document.querySelectorAll('#mob a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mob').classList.remove('on');});});
+
+/* ══ SMOOTH NAV ══ */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href').slice(1);var el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});});
+
+/* ══ SCROLL REVEAL ══ */
+var rvObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.07,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){rvObs.observe(el);});
+
+/* ══ HERO CANVAS ══ */
+(function(){
+  var cv=document.getElementById('hcv'),ctx=cv.getContext('2d'),W,H,t=0,hmx=.5,hmy=.5;
+  function rsz(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}rsz();
+  window.addEventListener('resize',rsz,{passive:true});
+  document.getElementById('hero').addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();hmx=(e.clientX-r.left)/W;hmy=(e.clientY-r.top)/H;});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    [[.72+hmx*.06+Math.sin(t*.38)*.04,.42+hmy*.04+Math.cos(t*.28)*.05,.58,'rgba(155,27,107,.26)'],[.55+Math.cos(t*.22)*.05,.62+Math.sin(t*.3)*.04,.43,'rgba(93,16,48,.2)'],[.22+Math.sin(t*.18)*.04,.38+Math.cos(t*.25)*.04,.33,'rgba(212,168,83,.08)'],[.85+Math.sin(t*.15)*.03,.8+Math.cos(t*.2)*.04,.28,'rgba(232,130,26,.06)']].forEach(function(o){var g=ctx.createRadialGradient(o[0]*W,o[1]*H,0,o[0]*W,o[1]*H,o[2]*Math.max(W,H));g.addColorStop(0,o[3]);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);});
+    ctx.save();for(var i=0;i<9;i++){var yb=(i/9)*H;ctx.beginPath();ctx.moveTo(0,yb);for(var x=0;x<=W;x+=18){ctx.lineTo(x,yb+Math.sin((x/W)*Math.PI*4+t*.55+i*.7)*(9+i*2.2));}ctx.strokeStyle='rgba(212,168,83,'+(0.022-i*.002)+')';ctx.lineWidth=.7;ctx.stroke();}ctx.restore();
+    t+=.011;requestAnimationFrame(draw);
+  }draw();
+})();
+
+/* ══ PARTICLES ══ */
+(function(){
+  var cv=document.getElementById('pcv'),ctx=cv.getContext('2d'),W,H;
+  function rsz(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}rsz();
+  window.addEventListener('resize',rsz,{passive:true});
+  var pts=[];for(var i=0;i<75;i++){pts.push({x:Math.random(),y:Math.random()+.5,vx:(Math.random()-.5)*.0004,vy:-Math.random()*.001-.0002,r:Math.random()*2.4+.5,a:Math.random()*.55+.1,c:Math.floor(Math.random()*3)});}
+  var cols=['rgba(212,168,83,','rgba(155,27,107,','rgba(232,207,160,'];
+  function draw(){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.y<-.02)p.y=1.1;if(p.x<0)p.x=1;if(p.x>1)p.x=0;var g=ctx.createRadialGradient(p.x*W,p.y*H,0,p.x*W,p.y*H,p.r*3);g.addColorStop(0,cols[p.c]+p.a+')');g.addColorStop(.5,cols[p.c]+(p.a*.35)+')');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x*W,p.y*H,p.r*3,0,Math.PI*2);ctx.fill();});requestAnimationFrame(draw);}draw();
+})();
+
+/* ══ FABRIC CANVAS ══ */
+(function(){
+  var wrap=document.getElementById('fabw'),cv=document.getElementById('fabc'),ctx=cv.getContext('2d'),W,H,t=0,lx=.5,ly=.5,tlx=.5,tly=.5;
+  function rsz(){W=cv.width=wrap.offsetWidth;H=cv.height=wrap.offsetHeight;}rsz();
+  window.addEventListener('resize',rsz,{passive:true});
+  wrap.addEventListener('mousemove',function(e){var r=wrap.getBoundingClientRect();tlx=(e.clientX-r.left)/W;tly=(e.clientY-r.top)/H;});
+  wrap.addEventListener('touchmove',function(e){var r=wrap.getBoundingClientRect();tlx=(e.touches[0].clientX-r.left)/W;tly=(e.touches[0].clientY-r.top)/H;},{passive:true});
+  var COLS=[[155,27,107],[212,168,83],[93,16,48],[181,122,142],[232,130,26],[26,107,107]];
+  function draw(){
+    lx+=(tlx-lx)*.055;ly+=(tly-ly)*.055;
+    ctx.clearRect(0,0,W,H);ctx.fillStyle='#080407';ctx.fillRect(0,0,W,H);
+    for(var i=0;i<30;i++){var f=i/30;ctx.beginPath();ctx.moveTo(0,f*H+Math.sin(t*.48+i)*12);for(var x=0;x<=W;x+=10){ctx.lineTo(x,f*H+Math.sin(t*.48+i)*12+Math.sin((x/W)*Math.PI*6+t*.7+i*.4)*4.5);}ctx.strokeStyle=(i%2===0?'rgba(212,168,83,':'rgba(155,27,107,')+(0.038+.028*Math.sin(i*.5+t))+')';ctx.lineWidth=.65;ctx.stroke();ctx.beginPath();ctx.moveTo(f*W,0);for(var y=0;y<=H;y+=10){ctx.lineTo(f*W+Math.sin((y/H)*Math.PI*5+t*.6+i*.5)*3.5+Math.cos(t*.35+i)*3,y);}ctx.strokeStyle='rgba(181,122,142,'+(0.025+.018*Math.cos(i*.6+t*.8))+')';ctx.lineWidth=.5;ctx.stroke();}
+    var g=ctx.createRadialGradient(lx*W,ly*H,0,lx*W,ly*H,W*.52);g.addColorStop(0,'rgba(240,215,170,.19)');g.addColorStop(.4,'rgba(212,168,83,.065)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    var g2=ctx.createRadialGradient(lx*W,ly*H,0,lx*W,ly*H,W*.33);g2.addColorStop(0,'rgba(155,27,107,.1)');g2.addColorStop(1,'transparent');ctx.fillStyle=g2;ctx.fillRect(0,0,W,H);
+    for(var i=0;i<78;i++){var sx=(Math.sin(i*137.5)*.5+.5)*W,sy=(Math.cos(i*97.3)*.5+.5)*H,dist=Math.hypot(lx*W-sx,ly*H-sy),shine=Math.max(0,1-dist/(W*.37)),sz=1+shine*3+Math.sin(t*2.2+i)*.28,col=COLS[i%COLS.length];ctx.beginPath();ctx.arc(sx+Math.sin(t*.42+i)*1.8,sy+Math.cos(t*.33+i)*1.4,sz,0,Math.PI*2);ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(0.065+shine*.52)+')';ctx.fill();if(shine>.38){ctx.beginPath();ctx.arc(sx,sy,sz*2.4,0,Math.PI*2);ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(shine*.1)+')';ctx.fill();}}
+    t+=.013;requestAnimationFrame(draw);
+  }draw();
+})();
+
+/* ══ BOKEH (testimonials) ══ */
+(function(){
+  var cv=document.getElementById('bkcv'),ctx=cv.getContext('2d'),W,H;
+  function rsz(){var s=document.getElementById('tst');W=cv.width=s.offsetWidth;H=cv.height=s.offsetHeight;}rsz();
+  window.addEventListener('resize',rsz,{passive:true});
+  var bk=[];for(var i=0;i<55;i++){bk.push({x:Math.random(),y:Math.random(),r:Math.random()*26+5,a:Math.random()*.16+.04,vx:(Math.random()-.5)*.0003,vy:(Math.random()-.5)*.0003,c:Math.random()<.5?'155,27,107':'212,168,83'});}
+  function draw(){ctx.clearRect(0,0,W,H);bk.forEach(function(b){b.x+=b.vx;b.y+=b.vy;if(b.x<0||b.x>1)b.vx*=-1;if(b.y<0||b.y>1)b.vy*=-1;var g=ctx.createRadialGradient(b.x*W,b.y*H,0,b.x*W,b.y*H,b.r);g.addColorStop(0,'rgba('+b.c+','+b.a+')');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.beginPath();ctx.arc(b.x*W,b.y*H,b.r,0,Math.PI*2);ctx.fill();});requestAnimationFrame(draw);}draw();
+})();
+
+/* ══ MOOD TOGGLE ══ */
+document.querySelectorAll('.mtab').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.mtab').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');var grid=document.getElementById('cg');grid.classList.add('fade');setTimeout(function(){grid.classList.remove('fade');},440);});});
+
+/* ══ COLLECTION CARDS 3D TILT + MODAL ══ */
+document.querySelectorAll('.cc').forEach(function(c){
+  c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();var x=(e.clientX-r.left-r.width/2)/(r.width/2);var y=(e.clientY-r.top-r.height/2)/(r.height/2);c.style.transform='perspective(860px) rotateY('+(x*5.5)+'deg) rotateX('+(-y*5.5)+'deg) translateY(-4px) scale(1.015)';});
+  c.addEventListener('mouseleave',function(){c.style.transform='';});
+  c.addEventListener('click',function(){document.getElementById('mcat').textContent=c.dataset.cat||'';document.getElementById('mtit').textContent=c.dataset.name||'';document.getElementById('mprc').textContent=c.dataset.price||'';document.getElementById('mdsc').textContent=c.dataset.desc||'';document.getElementById('mdl').classList.add('on');});
+});
+
+/* ══ MODAL ══ */
+document.getElementById('mxbt').addEventListener('click',closeMdl);
+document.getElementById('mdl').addEventListener('click',function(e){if(e.target===this)closeMdl();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMdl();});
+function closeMdl(){document.getElementById('mdl').classList.remove('on');}
+
+/* ══ CAROUSEL ══ */
+var track=document.getElementById('cart');
+var isDrag=false,stX=0,sL=0,vel=0,lastX=0,aid;
+function applyX(x){var max=-(track.scrollWidth-track.parentElement.offsetWidth);x=Math.max(max,Math.min(0,x));track._x=x;track.style.transform='translateX('+x+'px)';}
+function inertia(){cancelAnimationFrame(aid);function s(){if(Math.abs(vel)<.5)return;applyX((track._x||0)+vel);vel*=.91;aid=requestAnimationFrame(s);}s();}
+track.addEventListener('mousedown',function(e){isDrag=true;stX=e.pageX;sL=track._x||0;lastX=e.pageX;cancelAnimationFrame(aid);vel=0;});
+track.addEventListener('touchstart',function(e){isDrag=true;stX=e.touches[0].pageX;sL=track._x||0;lastX=e.touches[0].pageX;cancelAnimationFrame(aid);vel=0;},{passive:true});
+document.addEventListener('mousemove',function(e){if(!isDrag)return;vel=e.pageX-lastX;lastX=e.pageX;applyX(sL+(e.pageX-stX));});
+document.addEventListener('touchmove',function(e){if(!isDrag)return;vel=e.touches[0].pageX-lastX;lastX=e.touches[0].pageX;applyX(sL+(e.touches[0].pageX-stX));},{passive:true});
+function endD(){if(!isDrag)return;isDrag=false;inertia();}
+document.addEventListener('mouseup',endD);document.addEventListener('touchend',endD);
+document.getElementById('cprev').addEventListener('click',function(){applyX((track._x||0)+292);});
+document.getElementById('cnext').addEventListener('click',function(){applyX((track._x||0)-292);});
+
+/* ══ WISHLIST HEARTS ══ */
+document.querySelectorAll('.bwsh').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();btn.textContent='♥';btn.classList.add('lk');var rect=btn.getBoundingClientRect();var el=document.createElement('div');el.className='hfl';el.textContent='♥';el.style.left=(rect.left+rect.width/2)+'px';el.style.top=(rect.top+rect.height/2)+'px';document.body.appendChild(el);el.addEventListener('animationend',function(){el.remove();});ripple(btn,e);});});
+
+/* ══ RIPPLE ══ */
+function ripple(el,e){var r=document.createElement('span');r.className='rpl';var sz=Math.max(el.offsetWidth,el.offsetHeight);var rc=el.getBoundingClientRect();r.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-rc.left-sz/2)+'px;top:'+(e.clientY-rc.top-sz/2)+'px';el.style.position='relative';el.style.overflow='hidden';el.appendChild(r);r.addEventListener('animationend',function(){r.remove();});}
+document.querySelectorAll('.bg-btn,.go-btn').forEach(function(b){b.addEventListener('click',function(e){ripple(b,e);});});
+
+/* ══ COUNTERS ══ */
+document.querySelectorAll('[data-to]').forEach(function(el){var target=parseInt(el.dataset.to),started=false;var obs=new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!started){started=true;var dur=1800,start=performance.now();function step(now){var p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=Math.floor(ease*target).toLocaleString('en-IN')+'+';if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);obs.disconnect();}},{threshold:.5});obs.observe(el);});
+
+/* ══ NEWSLETTER ══ */
+function doSub(e){ripple(document.getElementById('subbtn'),e);var inp=document.querySelector('.cmi');if(inp.value&&inp.value.includes('@')){var btn=document.getElementById('subbtn');btn.textContent='✓ You\'re In!';btn.style.background='linear-gradient(135deg,#128C7E,#25D366)';inp.value='';setTimeout(function(){btn.textContent='Subscribe';btn.style.background='';},3000);}}
+
+/* ══ PARALLAX ══ */
+window.addEventListener('scroll',function(){var hc=document.querySelector('.hc');if(hc&&window.scrollY<window.innerHeight){hc.style.transform='translateY('+(window.scrollY*.11)+'px)';}},{passive:true});
+</script>
+</body>
+</html>
