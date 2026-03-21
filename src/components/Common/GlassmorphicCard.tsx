@@ -1,0 +1,5 @@
+import { cn } from '@/utils/cn';
+
+export function GlassmorphicCard({ className, children }: { className?: string; children: React.ReactNode }) {
+  return <div className={cn('glass-card', className)}>{children}</div>;
+}
